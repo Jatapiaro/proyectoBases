@@ -78,7 +78,7 @@
 		</servlet-name>
 
 		<url-pattern>
-			/RegistrarVehiculo.do
+			/RegistrarVehiculo
 		</url-pattern>
 
 </servlet-mapping>
