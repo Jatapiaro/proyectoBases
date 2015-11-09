@@ -8,7 +8,7 @@
 
 
 <welcome-file-list>
-	<welcome-file>registrocliente.html</welcome-file>
+	<welcome-file>RegistroChofer.html</welcome-file>
 </welcome-file-list>
 
 
@@ -32,6 +32,30 @@
 
 		<url-pattern>
 			/RegistrarCliente.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			 RegistrarChofer
+		</servlet-name>
+
+		<servlet-class>
+			RegistroChoferController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				RegistrarChofer
+		</servlet-name>
+
+		<url-pattern>
+			/RegistrarChofer.do
 		</url-pattern>
 
 </servlet-mapping>
