@@ -4,7 +4,10 @@
 	<title>Resultados</title>
 </head>
 <body>
-	<h1>${mensaje}</h1>
-	<a href="${direccion}"></a>
+	<center>
+		<h1>${mensaje}</h1>
+		<a href="${direccion}"></a>
+	</center>
+	<a href="index.html"></a>
 </body>
 </html>
