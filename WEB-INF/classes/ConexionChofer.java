@@ -35,7 +35,7 @@ public class ConexionChofer{
 		try{
 
 			//INSERT INTO chofers (nombrechofer,telefonochofer,contactochofer,deudachofer) VALUES ("Insumos","5521505060","Armando",0);  
-			String rows="(nombreChofer,telefonoChofer,contactoChofer,deudaChofer)";
+			String rows="(nombreChofer,telefonoChofer,salarioChofer)";
 			enunciado=conexion.prepareStatement( 
 				"INSERT INTO Choferes "+rows+ 
 				" VALUES(?,?,?);");
