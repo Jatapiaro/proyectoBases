@@ -43,7 +43,6 @@ public class ConexionChofer{
 			enunciado.setString(1,chofer.getNombreChofer());
 			enunciado.setString(2,chofer.getTelefonoChofer());
 			enunciado.setFloat(3,chofer.getSalarioChofer());
-
 			enunciado.execute();
 
 		}catch(Exception e){

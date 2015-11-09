@@ -8,7 +8,7 @@
 
 
 <welcome-file-list>
-	<welcome-file>RegistroChofer.html</welcome-file>
+	<welcome-file>RegistroVehiculo.html</welcome-file>
 </welcome-file-list>
 
 
@@ -56,6 +56,29 @@
 
 		<url-pattern>
 			/RegistrarChofer.do
+		</url-pattern>
+
+</servlet-mapping>
+
+<servlet>
+	 	<servlet-name>
+			 RegistrarVehiculo
+		</servlet-name>
+
+		<servlet-class>
+			RegistroVehiculoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				RegistrarVehiculo
+		</servlet-name>
+
+		<url-pattern>
+			/RegistrarVehiculo.do
 		</url-pattern>
 
 </servlet-mapping>

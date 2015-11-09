@@ -26,6 +26,7 @@ public class ConexionCliente{
 			consulta=conexion.createStatement();
 
 			clientes=new ArrayList<Cliente>();
+			
 
 		}catch(Exception e){
 			e.printStackTrace();
