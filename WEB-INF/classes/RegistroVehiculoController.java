@@ -27,7 +27,7 @@ public class RegistroVehiculoController extends HttpServlet{
 		if(validarParametros(parameters)){
 
 			Vehiculo vehiculo=new Vehiculo(placasVehiculo,
-				Float.parseFloat(capacidadVehiculo),
+				Float.parseFloat(costoVehiculo),
 				Float.parseFloat(capacidadVehiculo));
 
 			new ListaVehiculos().agregarVehiculo(vehiculo);
@@ -39,7 +39,7 @@ public class RegistroVehiculoController extends HttpServlet{
 		}else{
 			request.setAttribute("mensaje",
 				"No has ingresado todos los datos o los has ingresado incorrectamente");
-			request.setAttribute("direccion","registroCliente.html");
+			request.setAttribute("direccion","RegistroVehiculo.html");
 			request.getRequestDispatcher("FaltanDatos.jsp").forward(request,response);
 		}
 

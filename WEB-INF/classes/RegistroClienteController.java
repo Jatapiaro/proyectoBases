@@ -35,7 +35,7 @@ public class RegistroClienteController extends HttpServlet{
 		}else{
 			request.setAttribute("mensaje",
 				"No has ingresado todos los datos");
-			request.setAttribute("direccion","registroCliente.html");
+			request.setAttribute("direccion","registrocliente.html");
 			request.getRequestDispatcher("FaltanDatos.jsp").forward(request,response);
 		}
 

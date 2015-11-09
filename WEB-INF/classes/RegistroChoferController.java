@@ -35,7 +35,7 @@ public class RegistroChoferController extends HttpServlet{
 		}else{
 			request.setAttribute("mensaje",
 				"No has ingresado todos los datos");
-			request.setAttribute("direccion","registroCliente.html");
+			request.setAttribute("direccion","RegistroChofer.html");
 			request.getRequestDispatcher("resultados.jsp").forward(request,response);
 		}
 
