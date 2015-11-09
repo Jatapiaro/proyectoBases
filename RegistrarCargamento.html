@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html>
+<head>
+	<title>Registro de Cargamento</title>
+</head>
+<body>
+
+	<center>
+		<h1><strong>Registro de Cargamento</strong></h1>
+		<form action="RegistrarCargamento.do" method="post">
+			<table>
+
+
+				<tr>
+					<td>
+						Descripción del cargamento
+					</td>
+					<td>
+						<input type="text" name="tipoCargamento">
+					</td>	
+				</tr>
+
+				<tr>
+					<td>
+						Peso del cargamento
+					</td>
+					<td>
+						<input type="text" name="pesoCargamento">
+					</td>	
+				</tr>
+
+				<tr>
+					<td>
+						¿Es Delicado?
+					</td>
+					<td>
+						Si<input type="radio" name="delicadoCargamento" value="True"/>
+						No<input type="radio" name="delicadoCargamento" value="False"/>
+					</td>	
+				</tr>
+
+
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="Registrar Cargamento"></td>
+				</tr>
+
+			</table>
+		</form>
+	</center>
+
+</body>
+</html>
