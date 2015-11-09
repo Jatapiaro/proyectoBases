@@ -29,7 +29,7 @@ public class RegistroCargamentoController extends HttpServlet{
 
 			new ConexionCargamento().addCargamento(cargamento);
 
-			request.setAttribute("mensaje","Cargamento agregado de manera exitosa");
+			request.setAttribute("mensaje","Flete agregado de manera exitosa");
 			request.setAttribute("direccion","index.html");
 			request.getRequestDispatcher("resultados.jsp").forward(request,response);
 

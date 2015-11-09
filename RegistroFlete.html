@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html>
+<head>
+	<title>Registro de Clientes</title>
+</head>
+<body>
+
+	<center>
+		<h1><strong>Registro Cliente</strong></h1>
+		<form action="RegistroCargamento.html" method="post">
+			<table>
+
+				<tr>
+					<td>
+						Cliente que solicta el servicio
+					</td>
+					<td>
+						<select name="clientes">
+  							<option value="Cliente1">Cliente1</option>
+  							<option value="Cliente2">Cliente2</option>
+  							<option value="Cliente3">Cliente3</option>
+  							<option value="Cliente4">Cliente4</option>
+						</select>
+					</td>	
+				</tr>
+
+				<tr>
+
+					<td>
+						Fecha y hora de recolección
+					</td>
+					<td>
+						<input type="datetime-local" name="fechaHoraRecoleccion">
+					</td>
+		
+				</tr>
+
+
+				<tr>
+
+					<td>
+						Dirección de recolección
+					</td>
+					<td>
+						<input type="text" name="direccionRecoleccion">
+					</td>
+		
+				</tr>
+
+
+				<tr>
+					<td>
+						Fecha y hora de entrega
+					</td>
+					<td>
+						<input type="datetime-local" name="fechaHoraEntrega">
+					</td>
+				</tr>
+
+
+				<tr>
+
+					<td>
+						Dirección de entrega
+					</td>
+					<td>
+						<input type="text" name="direccionEntrega">
+					</td>
+		
+				</tr>	
+
+
+				<tr>
+
+					<td>
+						Zona de Entrega
+					</td>
+
+					<td>
+						Norte<input type="radio" name="zona" value="Norte"/>
+						Sur<input type="radio" name="zona" value="Sur"/>
+						Oriente<input type="radio" name="zona" value="Oriente"/>
+						Poniente<input type="radio" name="zona" value="Poniente"/>
+						Foráneo<input type="radio" name="zona" value="Foraneo"/>
+					</td>	
+		
+				</tr>			
+
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="Registrar Chofer"></td>
+				</tr>
+
+			</table>
+		</form>
+
+	</center>
+<a href="index.html">Regresar</a>
+</body>
+</html>
