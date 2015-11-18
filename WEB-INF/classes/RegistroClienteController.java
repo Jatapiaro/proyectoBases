@@ -29,15 +29,26 @@ public class RegistroClienteController extends HttpServlet{
 			new ListaClientes().agregarCliente(cliente);
 
 			request.setAttribute("mensaje","Cliente agregado de manera exitosa");
-			request.setAttribute("direccion","index.html");
+			request.setAttribute("direccion","Index.jsp");
 			request.getRequestDispatcher("resultados.jsp").forward(request,response);
 
 		}else{
 			request.setAttribute("mensaje",
 				"No has ingresado todos los datos");
-			request.setAttribute("direccion","registrocliente.html");
+			request.setAttribute("direccion","RegistroClientes.jsp");
 			request.getRequestDispatcher("FaltanDatos.jsp").forward(request,response);
 		}
+
+	}
+
+
+
+	public void doGet(HttpServletRequest request, 
+		HttpServletResponse response)throws ServletException,IOException{
+
+		request.setAttribute("ListaDeClientes",
+			new ListaClientes().obtenerClientes());
+		request.getRequestDispatcher("VerClientes.jsp").forward(request,response);
 
 	}
 

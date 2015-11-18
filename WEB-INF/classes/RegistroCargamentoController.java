@@ -14,6 +14,7 @@ public class RegistroCargamentoController extends HttpServlet{
 		HttpServletResponse response) throws ServletException,IOException{
 
 		ArrayList<String> parameters=new ArrayList<String>();
+		String idFlete=request.getParameter("idFromFlete");
 		String tipoCargamento=request.getParameter("tipoCargamento");
 		parameters.add(tipoCargamento);
 		String pesoCargamento=request.getParameter("pesoCargamento");
@@ -23,7 +24,8 @@ public class RegistroCargamentoController extends HttpServlet{
 
 		if(validarParametros(parameters)){
 
-			Cargamento cargamento=new Cargamento(tipoCargamento,
+			Cargamento cargamento=new Cargamento(
+				Integer.parseInt(idFlete),tipoCargamento,
 				Float.parseFloat(pesoCargamento),
 				Boolean.parseBoolean(delicadoCargamento));
 

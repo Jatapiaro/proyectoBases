@@ -2,18 +2,24 @@ package beans;
 
 public class Chofer{
 
-	private String nombreChofer,telefonoChofer;
+	private String nombreChofer,telefonoChofer,usernameChofer,
+	passwordChofer;
 	private float salarioChofer;
+	private boolean esAdmin;
 
 	public Chofer(){
 
 	}
 
-	public Chofer(String nombreChofer,String telefonoChofer,
-		float salarioChofer){
+	public Chofer(String nombreChofer,String usernameChofer,
+		String passwordChofer,String telefonoChofer,
+		float salarioChofer,boolean esAdmin){
 		this.nombreChofer=nombreChofer;
 		this.telefonoChofer=telefonoChofer;
+		this.usernameChofer=usernameChofer;
+		this.passwordChofer=passwordChofer;
 		this.salarioChofer=salarioChofer;
+		this.esAdmin=esAdmin;
 	}
 
 	public void setNombreChofer(String nombreChofer){
@@ -22,6 +28,22 @@ public class Chofer{
 
 	public String getNombreChofer(){
 		return this.nombreChofer;
+	}
+
+	public void setUsernameChofer(String usernameChofer){
+		this.usernameChofer=usernameChofer;
+	}
+
+	public String getUsernameChofer(){
+		return this.usernameChofer;
+	}
+
+	public void setPasswordChofer(String passwordChofer){
+		this.passwordChofer=passwordChofer;
+	}
+
+	public String getPasswordChofer(){
+		return this.passwordChofer;
 	}
 
 	public void setTelefonoChofer(String telefonoChofer){
@@ -41,5 +63,13 @@ public class Chofer{
 
 	public float getSalarioChofer(){
 		return this.salarioChofer;
+	}
+
+	public void setEsAdmin(boolean esAdmin){
+		this.esAdmin=esAdmin;
+	}
+
+	public boolean getEsAdmin(){
+		return this.esAdmin;
 	}
 }

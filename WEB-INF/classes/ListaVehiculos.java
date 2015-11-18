@@ -5,7 +5,7 @@ import conexiones.ConexionVehiculo;
 
 public class ListaVehiculos{
 
-	public ArrayList<Vehiculo> vehiculos;
+	private ArrayList<Vehiculo> vehiculos;
 	
 	public ListaVehiculos(){
 		vehiculos= new ConexionVehiculo().getAllVehiculos();
@@ -18,5 +18,23 @@ public class ListaVehiculos{
 	public ArrayList <Vehiculo> getVehiculos(){
 		return vehiculos;
 	} 
+
+	public Vehiculo getVehiculoForWeight(float weight){
+		return new ConexionVehiculo().getVehiculoForWeight(weight);
+	}
+
+	public String menorVehiculo(){
+		Vehiculo menor=vehiculos.get(0);
+		float min=vehiculos.get(0).getCapacidadVehiculo();
+		for (Vehiculo v : vehiculos) {
+			if(v.getCapacidadVehiculo()<min){
+				min=v.getCapacidadVehiculo();
+				menor=v;
+			}
+		}
+		return menor.getPlacasVehiculo();	
+	}
+
+
 
 }

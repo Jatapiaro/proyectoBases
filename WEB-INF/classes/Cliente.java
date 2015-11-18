@@ -4,6 +4,7 @@ public class Cliente{
 	
 	private String nombreCliente,telefonoCliente,contactoCliente;
 	private float deudaCliente;
+	private int clienteID;
 
 	public Cliente(){
 
@@ -11,22 +12,20 @@ public class Cliente{
 
 	public Cliente(String nombreCliente,String telefonoCliente,
 		String contactoCliente){
-
 		this.nombreCliente=nombreCliente;
 		this.telefonoCliente=telefonoCliente;
 		this.contactoCliente=contactoCliente;
 		this.deudaCliente=0;
-
 	}
 
 	public Cliente(String nombreCliente,String telefonoCliente,
-		String contactoCliente,float deudaCliente){
+		String contactoCliente,float deudaCliente,int clienteID){
 
 		this.nombreCliente=nombreCliente;
 		this.telefonoCliente=telefonoCliente;
 		this.contactoCliente=contactoCliente;
 		this.deudaCliente=deudaCliente;
-
+		this.clienteID=clienteID;
 	}
 
 	public void setNombreCliente(String nombreCliente){
@@ -59,6 +58,14 @@ public class Cliente{
 
 	public float getDeudaCliente(){
 		return this.deudaCliente;
+	}
+
+	public void setClienteID(int clienteID){
+		this.clienteID=clienteID;
+	}
+
+	public int getClienteID(){
+		return this.clienteID;
 	}
 
 }

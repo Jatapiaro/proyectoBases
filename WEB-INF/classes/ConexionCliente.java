@@ -46,8 +46,8 @@ public class ConexionCliente{
 			enunciado.setString(2,cliente.getTelefonoCliente());
 			enunciado.setString(3,cliente.getContactoCliente());
 			enunciado.setFloat(4,0);
-
 			enunciado.execute();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -65,13 +65,51 @@ public class ConexionCliente{
 					resultado.getString("nombreCliente"),
 					resultado.getString("telefonoCliente"),
 					resultado.getString("contactoCliente"),
-					resultado.getFloat("deudaCliente")));
+					resultado.getFloat("deudaCliente"),
+					resultado.getInt("ClienteID")));
 			}
+			resultado.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return clientes;
 	}
+
+	public Cliente getClienteFromID(int id){
+		Cliente c=null;
+		try{
+
+			resultado=consulta.executeQuery(
+				"SELECT * FROM Clientes WHERE ClienteID="+id+";");
+
+			while(resultado.next()){
+				c=new Cliente(
+					resultado.getString("nombreCliente"),
+					resultado.getString("telefonoCliente"),
+					resultado.getString("contactoCliente"),
+					resultado.getFloat("deudaCliente"),
+					resultado.getInt("ClienteID"));
+			}
+			resultado.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return c;
+	}
+
+	public void eliminarCliente(int id){
+		try{
+			enunciado=conexion.prepareStatement( 
+				"DELETE FROM Clientes WHERE ClienteID="+id+";");	
+			enunciado.executeUpdate();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+
 
 }

@@ -34,16 +34,19 @@ public class ConexionChofer{
 	public void addChofer(Chofer chofer){
 		try{
 
-			//INSERT INTO chofers (nombrechofer,telefonochofer,contactochofer,deudachofer) VALUES ("Insumos","5521505060","Armando",0);  
-			String rows="(nombreChofer,telefonoChofer,salarioChofer)";
+			String rows="(nombreChofer,telefonoChofer,salarioChofer,usernameChofer,passwordChofer,esAdmin)";
 			enunciado=conexion.prepareStatement( 
 				"INSERT INTO Choferes "+rows+ 
-				" VALUES(?,?,?);");
+				" VALUES(?,?,?,?,?,?);");
 
 			enunciado.setString(1,chofer.getNombreChofer());
 			enunciado.setString(2,chofer.getTelefonoChofer());
 			enunciado.setFloat(3,chofer.getSalarioChofer());
+			enunciado.setString(4,chofer.getUsernameChofer());
+			enunciado.setString(5,chofer.getPasswordChofer());
+			enunciado.setBoolean(6,chofer.getEsAdmin());
 			enunciado.execute();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -59,13 +62,42 @@ public class ConexionChofer{
 			while(resultado.next()){
 				choferes.add(new Chofer(
 					resultado.getString("nombreChofer"),
+					resultado.getString("usernameChofer"),
+					resultado.getString("passwordChofer"),
 					resultado.getString("telefonoChofer"),
-					resultado.getFloat("salarioChofer")));
+					resultado.getFloat("salarioChofer"),
+					resultado.getBoolean("esAdmin")));
 			}
+			resultado.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return choferes;
+	}
+
+	public Chofer getChoferFromID(String id){
+		id="\""+id+"\"";
+		Chofer c=null;
+		try{
+			resultado=consulta.executeQuery(
+				"SELECT * FROM Choferes WHERE usernameChofer="+id+";");
+			
+			while(resultado.next()){
+				c=new Chofer(
+					resultado.getString("nombreChofer"),
+					resultado.getString("usernameChofer"),
+					resultado.getString("passwordChofer"),
+					resultado.getString("telefonoChofer"),
+					resultado.getFloat("salarioChofer"),
+					resultado.getBoolean("esAdmin"));
+			}
+			resultado.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return c;
 	}
 }

@@ -42,6 +42,7 @@ public class ConexionVehiculo{
 			enunciado.setFloat(3, vehiculo.getCapacidadVehiculo());
 
 			enunciado.execute();
+			conexion.close();
 
 		} catch (Exception e) {	
 			e.printStackTrace();
@@ -62,13 +63,49 @@ public class ConexionVehiculo{
 					resultado.getFloat("capacidadVehiculo")));
 			}
 
+			resultado.close();
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 
 		return vehiculos;
 	}
-	
+
+	public Vehiculo getVehiculoFromID(String vehiculoID){
+		Vehiculo v=null;
+	    vehiculoID="\""+vehiculoID+"\"";
+		try{
+
+			resultado= consulta.executeQuery(
+				"SELECT * FROM Vehiculos WHERE placasVehiculo="+vehiculoID+";");
+
+		    while(resultado.next()){
+				v=new Vehiculo(
+					resultado.getString("placasVehiculo"),
+					resultado.getFloat("costoVehiculo"), 
+					resultado.getFloat("capacidadVehiculo"));
+			}
+
+			resultado.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return v;
+	}
+
+	public Vehiculo getVehiculoForWeight(float peso){
+		Vehiculo res=null;
+		ArrayList<Vehiculo> vehic=getAllVehiculos();
+		for (Vehiculo v: vehic) {
+			if(peso<=v.getCapacidadVehiculo()){
+				res=v;
+				break;
+			}
+		}
+		return res;
+	}
 
 
 }

@@ -12,7 +12,7 @@ public class ConexionCargamento{
 	private ResultSet resultado;
 	private PreparedStatement enunciado;
 	private Connection conexion;
-	private Cargamento cargamento;
+	private ArrayList<Cargamento> cargamentos;
 
 	public ConexionCargamento(){
 		try{
@@ -24,7 +24,7 @@ public class ConexionCargamento{
 
 			consulta=conexion.createStatement();
 
-			cargamento=null;
+			cargamentos=null;
 			
 
 		}catch(Exception e){
@@ -36,35 +36,64 @@ public class ConexionCargamento{
 		try{
 
 			//INSERT INTO Clientes (nombreCliente,telefonoCliente,contactoCliente,deudaCliente) VALUES ("Insumos","5521505060","Armando",0);  
-			String rows="(tipoCargamento,pesoCargamento,delicadoCargamento)";
+			String rows="(tipoCargamento,pesoCargamento,delicadoCargamento,fleteID)";
 			enunciado=conexion.prepareStatement( 
 				"INSERT INTO Cargamentos "+rows+ 
-				" VALUES(?,?,?);");
+				" VALUES(?,?,?,?);");
 
 			enunciado.setString(1,cargamento.getTipoCargamento());
 			enunciado.setFloat(2,cargamento.getPesoCargamento());
 			enunciado.setBoolean(3,cargamento.getDelicadoCargamento());
+			enunciado.setInt(4,cargamento.getFleteID());
 			enunciado.execute();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
-	public Cargamento getCargamento(int idFlete){
-		/*
-		**Obtiene un cargamento relacionado a un flete
+	public ArrayList<Cargamento> getCargamentos(int idFlete){
+
 		try{
-
 			resultado=consulta.executeQuery(
-				"SELECT * FROM Clientes;");
+				"SELECT * FROM Cargamentos WHERE fleteID="+idFlete+";");
 
+			while(resultado.next()){
+				cargamentos.add(new Cargamento(
+					resultado.getString("tipoCargamento"),
+					resultado.getFloat("pesoCargamento"),
+					resultado.getBoolean("delicadoCargamento"),
+					resultado.getInt("cargamentoID")
+					));
+			}
+			resultado.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		*/
-		return cargamento;
-		
+
+		return cargamentos;
+	}
+
+	public float pesoCargamentos(int idFlete){
+
+		float peso=0;
+
+		try{
+			resultado=consulta.executeQuery(
+				"SELECT SUM(pesoCargamento) AS pesoTotal FROM Cargamentos WHERE fleteID="
+				+idFlete+";");
+
+			while(resultado.next()){
+				peso=resultado.getFloat("pesoTotal");
+			}
+
+			resultado.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return peso;
 	}
 
 }

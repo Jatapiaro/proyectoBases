@@ -4,6 +4,7 @@ public class Cargamento{
 	private String tipoCargamento;
 	private float pesoCargamento;
 	private boolean delicadoCargamento;
+	private int cargamentoID,fleteID;
 
 	public Cargamento(){
 
@@ -11,7 +12,25 @@ public class Cargamento{
 
 	public Cargamento(String tipoCargamento,
 		float pesoCargamento,boolean delicadoCargamento){
+		this.tipoCargamento=tipoCargamento;
+		this.pesoCargamento=pesoCargamento;
+		this.delicadoCargamento=delicadoCargamento;
+	}
 
+	public Cargamento(String tipoCargamento,
+		float pesoCargamento,boolean delicadoCargamento,int cargamentoID){
+
+		this.cargamentoID=cargamentoID;
+		this.tipoCargamento=tipoCargamento;
+		this.pesoCargamento=pesoCargamento;
+		this.delicadoCargamento=delicadoCargamento;
+
+	}
+
+	public Cargamento(int fleteID,String tipoCargamento,
+		float pesoCargamento,boolean delicadoCargamento){
+
+		this.fleteID=fleteID;
 		this.tipoCargamento=tipoCargamento;
 		this.pesoCargamento=pesoCargamento;
 		this.delicadoCargamento=delicadoCargamento;
@@ -43,6 +62,14 @@ public class Cargamento{
 
 	public boolean getDelicadoCargamento(){
 		return this.delicadoCargamento;
+	}
+
+	public void setFleteID(int fleteID){
+		this.fleteID=fleteID;
+	}
+
+	public int getFleteID(){
+		return this.fleteID;
 	}
 
 }
