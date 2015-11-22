@@ -150,18 +150,32 @@ public class ConexionFlete{
 
 	public String getIDVehiculo(float peso){
 		ArrayList<Vehiculo> vehic=new ListaVehiculos().getVehiculos();
+		ArrayList<Vehiculo> posibles=new ArrayList<Vehiculo>();
 		String s="";
+
 		for (Vehiculo v:vehic) {
 			if(v.getCapacidadVehiculo()>=peso){
-				s=v.getPlacasVehiculo();
+				//s=v.getPlacasVehiculo();
+				posibles.add(v);
 			}
 		}
-		if(s.equals("")){
-			float max=0;
-			for (Vehiculo v : vehic) {
-				if(v.getCapacidadVehiculo()>max){
-					max=v.getCapacidadVehiculo();
+
+		if(posibles.size()>0){
+			float min=100000000;
+			for (Vehiculo v : posibles) {
+				if(v.getCapacidadVehiculo()<min){
+					min=v.getCapacidadVehiculo();
 					s=v.getPlacasVehiculo();
+				}
+			}
+		}else{
+			if(s.equals("")){
+				float max=0;
+				for (Vehiculo v : vehic) {
+					if(v.getCapacidadVehiculo()>max){
+						max=v.getCapacidadVehiculo();
+						s=v.getPlacasVehiculo();
+					}
 				}
 			}
 		}

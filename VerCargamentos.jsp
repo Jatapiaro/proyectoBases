@@ -75,20 +75,20 @@
 								<input type="submit" id="btn-submit" value="Editar" style="width:100%"></td>
 								</form>
 
-								<td align='center' style= "color:#303F9F">
 								<form action="EliminarC.do
-								" action="post">
+								" method="post">
+								<td align='center' style= "color:#303F9F">
 								<input type="hidden" value="${cargamento.cargamentoID}" name="cargamentoID">
 								<input type="hidden" value="${fleteID}" name="cID">
 								<input type="submit" id="btn-submit2" value="Borrar" style="width:100%">
-								</form>
 								</td>
+								</form>
 
 							</tr>
 							</c:forEach>
 
 							<tr>							
-							<form action="RegistrarCargamento.do" method="post">
+							<form action="RedireccionarCa.do" method="post">
 							<input type="hidden" value="${fleteID}" name="idFromFlete">
 						    <input type="submit" id="btn-submit2" value="Anadir Cargamento" style="width:100%">
 							</form>

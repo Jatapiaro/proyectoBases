@@ -107,7 +107,8 @@ public class ConexionCargamento{
 	public void eliminarCargamento(int idCargamento){
 
 		try{
-			resultado=consulta.executeQuery("DELETE FROM Cargamenos WHERE cargamentoID="+idCargamento+";");
+			enunciado=conexion.prepareStatement("DELETE FROM Cargamentos WHERE cargamentoID="+idCargamento+";");
+			enunciado.executeUpdate();
 		    consulta.close();
 			conexion.close();
 		}catch(Exception e){

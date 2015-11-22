@@ -13,12 +13,11 @@ public class EliminarCargamento extends HttpServlet{
 	public void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException,IOException{
 
-		String idCliente=request.getParameter("cID");
-		int id=Integer.parseInt(idCliente);
+		String idCargamento=request.getParameter("cargamentoID");
+		int id=Integer.parseInt(idCargamento);
 		new ConexionCargamento().eliminarCargamento(id);
 		request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
-		request.getRequestDispatcher("VistaFletes.jsp").forward(request,response);
-
+		request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 	}
 
 

@@ -11,9 +11,10 @@ public class RedireccionCargamento extends HttpServlet{
 	public void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException,IOException{
 
-		String theID=request.getParameter("theID");
+		String theID=request.getParameter("idFromFlete");
 		request.setAttribute("fleteID",theID);
 		request.getRequestDispatcher("RegistroCargamentos.jsp").forward(request,response);
+		
 	}
 
 	

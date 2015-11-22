@@ -30,7 +30,6 @@
 
                         <tr>
                         <form action="RedireccionarCargamento.do" method="post">
-
                         <input type="hidden" value="${flete.fleteID}" name="theID">
                         <td>Chofer encargado: </td><td><c:out value="${flete.choferNombre}"/></td>
                         <td>Vehiculo designado: </td><td><c:out value="${flete.vehiculoID}"/></td>

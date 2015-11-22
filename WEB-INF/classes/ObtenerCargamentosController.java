@@ -16,6 +16,7 @@ public class ObtenerCargamentosController extends HttpServlet{
 		HttpServletResponse response) throws ServletException,IOException{
 
 		int id=Integer.parseInt(request.getParameter("theID"));
+		request.setAttribute("fleteID",id);
 		request.setAttribute("ListaDeCargamentos",new ConexionCargamento().getCargamentos(id));
 		request.getRequestDispatcher("VerCargamentos.jsp").forward(request,response);
 

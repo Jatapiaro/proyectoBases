@@ -19,4 +19,8 @@ public class ListaCargamentos{
 		return new ConexionCargamento().pesoCargamentos(idFlete);
 	}
 
+	public void eliminarCargamento(int idCargamento){
+		new ConexionCargamento().eliminarCargamento(idCargamento);
+	}
+
 }

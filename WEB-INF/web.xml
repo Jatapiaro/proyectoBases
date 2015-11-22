@@ -442,6 +442,8 @@
 
 </servlet-mapping>
 
+
+
 <servlet>
 	 	<servlet-name>
 			EliminarC
@@ -450,7 +452,6 @@
 
 		<servlet-class>
 			EliminarCargamento
-
 		</servlet-class>
 
 </servlet>
@@ -467,8 +468,29 @@
 
 </servlet-mapping>
 
+<servlet>
+	 	<servlet-name>
+			RedireccionarCa
 
+		</servlet-name>
 
- 
+		<servlet-class>
+			RedireccionCargamento
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				RedireccionarCa
+		</servlet-name>
+
+		<url-pattern>
+			/RedireccionarCa.do
+		</url-pattern>
+
+</servlet-mapping>
+
 
 </web-app>
