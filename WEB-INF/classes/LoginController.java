@@ -25,8 +25,13 @@ public class LoginController extends HttpServlet{
 			estaEnSistema(username,password,choferes)){
 
 			HttpSession session=request.getSession();
-		  	session.setAttribute("usuario",chofer);
-			request.getRequestDispatcher("Index.jsp").forward(request,response);			
+
+			if(chofer.getEsAdmin()){
+		  		session.setAttribute("usuario",chofer);
+		  		session.setAttribute("rol",chofer.getEsAdmin());
+		  		request.getRequestDispatcher("Index.jsp").forward(request,response);			
+			
+		 	}
 			
 
 		}else{

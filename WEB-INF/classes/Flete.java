@@ -15,16 +15,59 @@ public class Flete{
 	private String vehiculoID,choferID,direccionRecoleccion,direccionEntrega,zona;
 	private float precio;
 	private Timestamp horaSalidaRecoleccion,horaSalidaEntrega;
-	private Timestamp fechaHoraRecoleccion,fechaHoraEntrega;
+	private LocalDateTime fechaHoraRecoleccion,fechaHoraEntrega;
 	private boolean recoleccionManiobra,entregaManiobra;
 	private ArrayList<Cargamento> cargamentos=new ArrayList<Cargamento>();
-	private Vehiculo vehiculo;
-	private Chofer chofer;
-	private Cliente cliente;
+	private String clienteNombre,choferNombre;
+	private float peso;
+	private String advertencia;
 
 	public Flete(){
 
 	}
+
+	public Flete(int fleteID,int clienteID,int kilometros,
+		String vehiculoID,String choferID,String direccionRecoleccion,
+		String direccionEntrega,String zona,float precio,
+		Timestamp horaSalidaRecoleccion,Timestamp horaSalidaEntrega,
+		LocalDateTime fechaHoraRecoleccion,LocalDateTime fechaHoraEntrega,
+		boolean recoleccionManiobra,boolean entregaManiobra){
+
+		this.fleteID=fleteID;
+		this.clienteID=clienteID;
+		this.kilometros=kilometros;
+		if(vehiculoID!=null){
+			this.vehiculoID=vehiculoID;
+		}else{
+			vehiculoID=null;
+		}
+		this.choferID=choferID;
+		this.direccionRecoleccion=direccionRecoleccion;
+		this.direccionEntrega=direccionEntrega;
+		this.zona=zona;
+		this.precio=precio;
+
+		if(horaSalidaRecoleccion!=null){
+			this.horaSalidaRecoleccion=horaSalidaRecoleccion;
+		}else{
+			this.horaSalidaRecoleccion=null;
+		}
+
+		if(horaSalidaEntrega!=null){
+			this.horaSalidaEntrega=horaSalidaEntrega;
+		}else{
+			this.horaSalidaEntrega=null;
+		}
+
+		this.fechaHoraRecoleccion=fechaHoraRecoleccion;
+		this.fechaHoraEntrega=fechaHoraEntrega;
+
+		this.recoleccionManiobra=recoleccionManiobra;
+		this.entregaManiobra=entregaManiobra;
+
+	}
+
+
 
 	public Flete(int clienteID,String choferID,String direccionRecoleccion,
 		String direccionEntrega,LocalDateTime fechaHoraRecoleccion,
@@ -62,39 +105,10 @@ public class Flete{
 			this.fechaHoraRecoleccion=fechaHoraRecoleccion;
 			this.fechaHoraEntrega=fechaHoraEntrega;
 			this.zona=zona;
-			this.kilometros=kilometros;			
-	}
-
-
-
-	public Flete(int fleteID,int clienteID,String vehiculoID,
-		String choferID,String direccionRecoleccion,String direccionEntrega,
-		float precio,
-		Timestamp horaSalidaRecoleccion,Timestamp horaSalidaEntrega,
-		LocalDateTime fechaHoraRecoleccion,
-		LocalDateTime fechaHoraEntrega,String zona,int kilometros,
-		boolean recoleccionManiobra,boolean entregaManiobra){
-
-			this.fleteID=fleteID;
-			this.clienteID=clienteID;
-			this.choferID=choferID;
-			this.vehiculoID=vehiculoID;
-			this.direccionRecoleccion=direccionRecoleccion;
-			this.direccionEntrega=direccionEntrega;
-			this.precio=precio;
-			if(horaSalidaRecoleccion!=null){
-				this.horaSalidaRecoleccion=horaSalidaRecoleccion;
-			}
-			if(horaSalidaEntrega!=null){
-				this.horaSalidaEntrega=horaSalidaEntrega;
-			}
-			this.fechaHoraRecoleccion=fechaHoraRecoleccion;
-			this.fechaHoraEntrega=fechaHoraEntrega;
-			this.zona=zona;
 			this.kilometros=kilometros;
-			this.recoleccionManiobra=recoleccionManiobra;
-			this.entregaManiobra=entregaManiobra;	
+
 	}
+
 
 	public void setFleteID(int fleteID){
 		this.fleteID=fleteID;
@@ -154,8 +168,8 @@ public class Flete{
 
 	public float getPrecio(){
 	    this.precio=0;
-		this.precio+=vehiculo.getCostoVehiculo();
-		this.precio+=precioPorZona();
+		// this.precio+=vehiculo.getCostoVehiculo();
+		// this.precio+=precioPorZona();
 		return this.precio;
 	}
 
@@ -217,8 +231,8 @@ public class Flete{
 
 	public float calcularPrecio(){
 		this.precio=0;
-		this.precio+=vehiculo.getCostoVehiculo();
-		this.precio+=precioPorZona();
+		//this.precio+=vehiculo.getCostoVehiculo();
+		//this.precio+=precioPorZona();
 		return precio;
 	}
 
@@ -238,21 +252,6 @@ public class Flete{
 		return p;
 	}
 
-	public void setChofer(Chofer chofer){
-		this.chofer=chofer;
-	}
-
-	public Chofer getChofer(){
-		return this.chofer;
-	}
-
-	public void setCliente(Cliente cliente){
-		this.cliente=cliente;
-	}
-
-	public Cliente getCliente(){
-		return this.cliente;
-	}
 
 	public void setCargamentos(ArrayList<Cargamento> cargamentos){
 		this.cargamentos=cargamentos;
@@ -262,11 +261,36 @@ public class Flete{
 		return this.cargamentos;
 	}
 
-	public void setVehiculo(Vehiculo vehiculo){
-		this.vehiculo=vehiculo;
+	public void setChoferNombre(String choferNombre){
+		this.choferNombre=choferNombre;
 	}
 
-	public Vehiculo getVehiculo(){
-		return this.vehiculo;
+	public String getChoferNombre(){
+		return this.choferNombre;
 	}
+
+	public void setClienteNombre(String clienteNombre){
+		this.clienteNombre=clienteNombre;
+	}
+
+	public String getClienteNombre(){
+		return this.clienteNombre;
+	}
+
+	public void setPeso(float peso){
+		this.peso=peso;
+	}
+
+	public float getPeso(){
+		return this.peso;
+	}
+
+	public void setAdvertencia(String advertencia){
+		this.advertencia=advertencia;
+	}
+
+	public String getAdvertencia(){
+		return this.advertencia;
+	}
+
 }

@@ -20,11 +20,10 @@ public class ListaChoferes{
 	}
 
 	public Chofer getChoferFromID(String id){
-		Chofer c=new ConexionChofer().getChoferFromID(id);
-		if(c!=null){
-			return c;
-		}else{
-			return new Chofer("Chofer dado de baja","xxxxx","noExiste","xx",100,false);
-		}
+		return new ConexionChofer().getChoferFromID(id);
+	}
+
+	public String getNombreChoferFromID(String id){
+		return new ConexionChofer().getNombreChoferFromID(id);
 	}
 }

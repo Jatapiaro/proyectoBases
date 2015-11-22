@@ -24,7 +24,7 @@ public class ConexionCargamento{
 
 			consulta=conexion.createStatement();
 
-			cargamentos=null;
+			cargamentos=new ArrayList<Cargamento>();
 			
 
 		}catch(Exception e){
@@ -46,6 +46,7 @@ public class ConexionCargamento{
 			enunciado.setBoolean(3,cargamento.getDelicadoCargamento());
 			enunciado.setInt(4,cargamento.getFleteID());
 			enunciado.execute();
+			consulta.close();
 			conexion.close();
 
 		}catch(Exception e){
@@ -67,17 +68,21 @@ public class ConexionCargamento{
 					resultado.getInt("cargamentoID")
 					));
 			}
-			resultado.close();
+			consulta.close();
+			conexion.close();
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 
 		return cargamentos;
+
+		
 	}
 
 	public float pesoCargamentos(int idFlete){
 
-		float peso=0;
+		Float peso=null;;
 
 		try{
 			resultado=consulta.executeQuery(
@@ -85,15 +90,29 @@ public class ConexionCargamento{
 				+idFlete+";");
 
 			while(resultado.next()){
-				peso=resultado.getFloat("pesoTotal");
+				peso=new Float(resultado.getFloat("pesoTotal"));
 			}
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if(!peso.equals(null)){
+			return peso.floatValue();
+		}else{
+			return 0.0f;
+		}
+	}
 
-			resultado.close();
+	public void eliminarCargamento(int idCargamento){
+
+		try{
+			resultado=consulta.executeQuery("DELETE FROM Cargamenos WHERE cargamentoID="+idCargamento+";");
+		    consulta.close();
+			conexion.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 
-		return peso;
 	}
-
 }

@@ -46,6 +46,7 @@ public class ConexionChofer{
 			enunciado.setString(5,chofer.getPasswordChofer());
 			enunciado.setBoolean(6,chofer.getEsAdmin());
 			enunciado.execute();
+			consulta.close();
 			conexion.close();
 
 		}catch(Exception e){
@@ -60,15 +61,20 @@ public class ConexionChofer{
 				"SELECT * FROM Choferes;");
 
 			while(resultado.next()){
-				choferes.add(new Chofer(
+				Chofer c=new Chofer(
 					resultado.getString("nombreChofer"),
 					resultado.getString("usernameChofer"),
 					resultado.getString("passwordChofer"),
 					resultado.getString("telefonoChofer"),
 					resultado.getFloat("salarioChofer"),
-					resultado.getBoolean("esAdmin")));
+					resultado.getBoolean("esAdmin"),
+					resultado.getBoolean("activo"));
+				if(c.getActivo()){
+					choferes.add(c);
+				}
 			}
-			resultado.close();
+			consulta.close();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -76,9 +82,29 @@ public class ConexionChofer{
 		return choferes;
 	}
 
+	public String getNombreChoferFromID(String id){
+		id="\""+id+"\"";
+		String nombreChofer="";
+		try{
+			resultado=consulta.executeQuery(
+				"SELECT * FROM Choferes WHERE usernameChofer="+id+";");
+			
+			while(resultado.next()){
+				nombreChofer=resultado.getString("nombreChofer");
+			}
+			consulta.close();
+			conexion.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return nombreChofer;
+	}
+
 	public Chofer getChoferFromID(String id){
 		id="\""+id+"\"";
-		Chofer c=null;
+		Chofer c=new Chofer();
 		try{
 			resultado=consulta.executeQuery(
 				"SELECT * FROM Choferes WHERE usernameChofer="+id+";");
@@ -86,13 +112,14 @@ public class ConexionChofer{
 			while(resultado.next()){
 				c=new Chofer(
 					resultado.getString("nombreChofer"),
+					resultado.getString("telefonoChofer"),
 					resultado.getString("usernameChofer"),
 					resultado.getString("passwordChofer"),
-					resultado.getString("telefonoChofer"),
 					resultado.getFloat("salarioChofer"),
 					resultado.getBoolean("esAdmin"));
 			}
-			resultado.close();
+			consulta.close();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -100,4 +127,20 @@ public class ConexionChofer{
 
 		return c;
 	}
+
+	public void eliminarChofer(String id){
+		try{
+			id="\""+id+"\"";
+			enunciado=conexion.prepareStatement( 
+				"UPDATE Choferes SET activo=? WHERE usernameChofer="+id+";");
+			enunciado.setBoolean(1,false);	
+			enunciado.executeUpdate();
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+
 }

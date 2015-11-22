@@ -44,6 +44,7 @@ public class RegistroCargamentoController extends HttpServlet{
 
 	}
 
+
 	
 	boolean validarParametros(ArrayList<String> parametros){
 		boolean validado=true;

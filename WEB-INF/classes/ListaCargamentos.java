@@ -7,10 +7,6 @@ public class ListaCargamentos{
 
 	private ArrayList<Cargamento> cargamentos;
 
-	public ListaCargamentos(){
-
-	}
-
 	public ListaCargamentos(int idFlete){
 		cargamentos=new ConexionCargamento().getCargamentos(idFlete);
 	}

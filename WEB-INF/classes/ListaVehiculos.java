@@ -35,6 +35,18 @@ public class ListaVehiculos{
 		return menor.getPlacasVehiculo();	
 	}
 
+	public void eliminarVehiculo(String id){
+		new ConexionVehiculo().eliminarVehiculo(id);
+	}
+
+	public void modificarVehiculo(String id,Vehiculo v){
+		new ConexionVehiculo().updateVehiculo(id,v);
+	}	
+
+	public float getVehiculoMaxCapacidad(){
+		return new ConexionVehiculo().getVehiculoMaxCapacidad();
+	}
+
 
 
 }

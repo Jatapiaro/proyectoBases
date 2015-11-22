@@ -14,12 +14,10 @@ public class ConfirmarRecoleccion extends HttpServlet{
 	public void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException,IOException{
 
-
 		int idFlete=Integer.parseInt(request.getParameter("theID"));
 		boolean man=Boolean.parseBoolean(request.getParameter("maniobraRecoleccion"));
 		new ConexionFlete().completarRecoleccion(idFlete,man);
-		request.setAttribute("ListaDeFletes",new ListaFletes().obtenerFletes());
-		ArrayList<Flete> fletesitos=new ListaFletes().obtenerFletes();
+		request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 		request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 	}
 

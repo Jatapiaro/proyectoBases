@@ -5,7 +5,7 @@ public class Chofer{
 	private String nombreChofer,telefonoChofer,usernameChofer,
 	passwordChofer;
 	private float salarioChofer;
-	private boolean esAdmin;
+	private boolean esAdmin,activo;
 
 	public Chofer(){
 
@@ -20,6 +20,18 @@ public class Chofer{
 		this.passwordChofer=passwordChofer;
 		this.salarioChofer=salarioChofer;
 		this.esAdmin=esAdmin;
+	}
+
+	public Chofer(String nombreChofer,String usernameChofer,
+		String passwordChofer,String telefonoChofer,
+		float salarioChofer,boolean esAdmin,boolean activo){
+		this.nombreChofer=nombreChofer;
+		this.telefonoChofer=telefonoChofer;
+		this.usernameChofer=usernameChofer;
+		this.passwordChofer=passwordChofer;
+		this.salarioChofer=salarioChofer;
+		this.esAdmin=esAdmin;
+		this.activo=activo;
 	}
 
 	public void setNombreChofer(String nombreChofer){
@@ -71,5 +83,13 @@ public class Chofer{
 
 	public boolean getEsAdmin(){
 		return this.esAdmin;
+	}
+
+	public void setActivo(boolean activo){
+		this.activo=activo;
+	}
+
+	public boolean getActivo(){
+		return this.activo;
 	}
 }

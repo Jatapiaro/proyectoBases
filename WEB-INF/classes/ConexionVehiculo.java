@@ -35,13 +35,14 @@ public class ConexionVehiculo{
 		try {
 
 			enunciado=conexion.prepareStatement(
-				"INSERT INTO Vehiculos VALUES(?,?,?)");
+				"INSERT INTO Vehiculos (placasVehiculo,costoVehiculo,capacidadVehiculo) VALUES(?,?,?)");
 
 			enunciado.setString(1, vehiculo.getPlacasVehiculo());
 			enunciado.setFloat(2, vehiculo.getCostoVehiculo());
 			enunciado.setFloat(3, vehiculo.getCapacidadVehiculo());
 
 			enunciado.execute();
+			consulta.close();
 			conexion.close();
 
 		} catch (Exception e) {	
@@ -57,13 +58,20 @@ public class ConexionVehiculo{
 				"SELECT * FROM Vehiculos");
 
 		    while(resultado.next()){
-				vehiculos.add(new Vehiculo(
+		    	Vehiculo v=new Vehiculo(
 					resultado.getString("placasVehiculo"),
 					resultado.getFloat("costoVehiculo"), 
-					resultado.getFloat("capacidadVehiculo")));
+					resultado.getFloat("capacidadVehiculo"),
+					resultado.getBoolean("activo"));
+
+		    	if(v.getActivo()){
+		    		vehiculos.add(v);
+		    	}
+
 			}
 
-			resultado.close();
+			consulta.close();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -87,7 +95,8 @@ public class ConexionVehiculo{
 					resultado.getFloat("capacidadVehiculo"));
 			}
 
-			resultado.close();
+			consulta.close();
+			conexion.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -99,12 +108,65 @@ public class ConexionVehiculo{
 		Vehiculo res=null;
 		ArrayList<Vehiculo> vehic=getAllVehiculos();
 		for (Vehiculo v: vehic) {
-			if(peso<=v.getCapacidadVehiculo()){
+			if(v.getActivo() && peso<=v.getCapacidadVehiculo()){
 				res=v;
 				break;
 			}
 		}
 		return res;
+	}
+
+	public void eliminarVehiculo(String id){
+		try{
+			id="\""+id+"\"";
+			enunciado=conexion.prepareStatement( 
+				"UPDATE Vehiculos SET activo=? WHERE placasVehiculo="+id+";");
+			enunciado.setBoolean(1,false);	
+			enunciado.executeUpdate();
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+
+	public void updateVehiculo(String id,Vehiculo v){
+		try{
+			id="\""+id+"\"";
+			enunciado=conexion.prepareStatement( 
+				"UPDATE Vehiculos SET costoVehiculo=?,capacidadVehiculo=? WHERE placasVehiculo="+id+";");
+			enunciado.setFloat(1,v.getCostoVehiculo());
+			enunciado.setFloat(2,v.getCapacidadVehiculo());
+			enunciado.executeUpdate();
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
+
+	public float getVehiculoMaxCapacidad(){
+
+		Float peso=null;;
+
+		try{
+			resultado=consulta.executeQuery(
+				"SELECT MAX(capacidadVehiculo) AS maximo FROM Vehiculos;");
+
+			while(resultado.next()){
+				peso=new Float(resultado.getFloat("maximo"));
+			}
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if(!peso.equals(null)){
+			return peso.floatValue();
+		}else{
+			return 0.0f;
+		}
 	}
 
 

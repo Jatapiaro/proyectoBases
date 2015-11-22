@@ -8,16 +8,14 @@ public class ListaFletes{
 	private ArrayList<Flete> fletes;
 
 	public ListaFletes(){
-		fletes=new ConexionFlete().getAllFletes();
 	}
 
 	public void agregarFlete(Flete flete){
 	 	new ConexionFlete().addFlete(flete);
 	}
 
-	public ArrayList<Flete> obtenerFletes(){
-		//javax.swing.JOptionPane.showMessageDialog(null,fletes.size());
-	 	return fletes;
+	public ArrayList<Flete> obtenerProximosFletes(){
+		return new ConexionFlete().getProximosFletes();
 	}
 	
 }

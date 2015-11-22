@@ -297,4 +297,178 @@
 </servlet-mapping>
 
 
+
+<servlet>
+	 	<servlet-name>
+			ObtenerCliente
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerClienteController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerCliente
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerCliente.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			modificarCliente.do
+		</servlet-name>
+
+		<servlet-class>
+			ModificarClienteController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				modificarCliente.do
+		</servlet-name>
+
+		<url-pattern>
+			/modificarCliente.do
+		</url-pattern>
+
+</servlet-mapping>
+
+<servlet>
+	 	<servlet-name>
+			EliminarVehiculo
+		</servlet-name>
+
+		<servlet-class>
+			EliminarVehiculoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				EliminarVehiculo
+		</servlet-name>
+
+		<url-pattern>
+			/EliminarVehiculo.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			ObtenerVehiculo
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerVehiculoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerVehiculo
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerVehiculo.do
+		</url-pattern>
+
+</servlet-mapping>
+
+<servlet>
+	 	<servlet-name>
+			ModificarVehiculo
+		</servlet-name>
+
+		<servlet-class>
+			ModificarVehiculoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ModificarVehiculo
+		</servlet-name>
+
+		<url-pattern>
+			/ModificarVehiculo.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+
+<servlet>
+	 	<servlet-name>
+			ObtenerCargamentos
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerCargamentosController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerCargamentos
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerCargamentos.do
+		</url-pattern>
+
+</servlet-mapping>
+
+<servlet>
+	 	<servlet-name>
+			EliminarC
+
+		</servlet-name>
+
+		<servlet-class>
+			EliminarCargamento
+
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				EliminarC
+		</servlet-name>
+
+		<url-pattern>
+			/EliminarC.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+ 
+
 </web-app>

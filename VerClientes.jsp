@@ -4,35 +4,86 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-	<title>Deslpiega Clientes</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/estilos2.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<title>Ver Clientes</title>
+	<style type="text/css">
+	table, td, th{
+
+		font-family: "Roboto";
+		border: none;
+		border-collapse: separate;
+    	border-spacing: 10px;
+
+	}
+	td, th{
+		padding: 5px;
+	
+
+	}
+	th{
+		background-color: #303F9F;
+		color: #fff;
+	}
+	</style>
 </head>
 <body>
     <c:choose>
-    	<c:when test="${sessionScope.usuario != null}">
-			<center>
-				<h1><strong>Ver Clientes</strong></h1>
-				<h2>${mensaje}</h2>
-					<table>
-					<tr>
-					<center>
-					<table>
-					<c:forEach items="${ListaDeClientes}" var="cliente">
-						<tr>
-						<form action="EliminarCliente.do" method="post">
-						<input type="hidden" value="${cliente.clienteID}" name="clienteID">
+    	<c:when test="${sessionScope.usuario != null &&sessionScope.rol == true}">
+	<center>
+	<div class="contenedor-formulario">
+		<div class="wrap">
+			<div class="formulario" name="formulario_registro">
+			<h2 style="color:#303F9F">Lista de Clientes</h2>
+			<br>
+			<br>
+			<h3 style="color:#${coloreado}">${mensaje}</h3>
+				<div>
+					<div class="input-group">
+					</div>
+					
+						<table >
+							<thead>
+								<th> Cliente</th>
+								<th> N&uacutemero</th>
+								<th> Contacto</th>
+								<th> Adeudo</th>
+							</thead>
 
-						<td>Cliente: </td><td><c:out value="${cliente.nombreCliente}"/></td>
-						<td>Telefono: </td><td><c:out value="${cliente.telefonoCliente}"/></td>
-						<td>Contacto o representante: </td><td><c:out value="${cliente.contactoCliente}"/></td>
-						<td><input type="submit" value="Algo"></td>
-						</form>
-						</tr>
-						</c:forEach>
-					</table>
-				
+							<c:forEach items="${ListaDeClientes}" var="cliente">
+							<tr>
+								<td style= "color:#303F9F">${cliente.nombreCliente}</td>
+								<td style= "color:#303F9F">${cliente.telefonoCliente}</td>
+								<td style= "color:#303F9F">${cliente.contactoCliente}</td>
+								<td style="color:#303F9F">${cliente.deudaCliente}</td>
+								<td align='center' style= "color:#303F9F">
 
-			</center>
-			<a href="Index.jsp">Menú Principal</a>
+								<form action="ObtenerCliente.do"method="post">
+								<input type="hidden" value="${cliente.clienteID}" name="clienteID">
+								<input type="submit" id="btn-submit" value="Editar" style="width:100%"></td>
+								</form>
+
+								<td align='center' style= "color:#303F9F">
+								<form action="EliminarCliente.do" method="post">
+								<input type="hidden" value="${cliente.clienteID}" name="clienteID">
+								<input type="submit" id="btn-submit2" value="Borrar" style="width:100%">
+								</form>
+								</td>
+
+
+								<td align='center' style= "color:#303F9F"><input type="submit" id="btn-submit3" value="Ver pr&oacute;ximos fletes" style="width:100%"></td>
+								<td align='center' style= "color:#303F9F"><input type="submit" id="btn-submit4" value="Ver fletes entregados" style="width:100%"></td>
+
+							</tr>
+							</c:forEach>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="js/formulario.js"></script>
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

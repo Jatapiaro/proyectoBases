@@ -23,8 +23,7 @@ public class RegistroVehiculoController extends HttpServlet{
 		parameters.add(costoVehiculo);
 		String capacidadVehiculo=request.getParameter("capacidadVehiculo");
 		parameters.add(capacidadVehiculo);
-
-		if(validarParametros(parameters)){
+		
 
 			Vehiculo vehiculo=new Vehiculo(placasVehiculo,
 				Float.parseFloat(costoVehiculo),
@@ -36,12 +35,14 @@ public class RegistroVehiculoController extends HttpServlet{
 			request.setAttribute("direccion","index.html");
 			request.getRequestDispatcher("resultados.jsp").forward(request,response);
 
-		}else{
-			request.setAttribute("mensaje",
-				"No has ingresado todos los datos o los has ingresado incorrectamente");
-			request.setAttribute("direccion","RegistroVehiculo.html");
-			request.getRequestDispatcher("FaltanDatos.jsp").forward(request,response);
-		}
+
+	}
+
+	public void doGet(HttpServletRequest request, 
+		HttpServletResponse response)throws ServletException,IOException{
+
+		request.setAttribute("ListaDeVehiculos",new ListaVehiculos().getVehiculos());
+		request.getRequestDispatcher("VistaVehiculo.jsp").forward(request,response);
 
 	}
 

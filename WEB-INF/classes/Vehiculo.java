@@ -4,6 +4,7 @@ public class Vehiculo {
 	
 	private String placasVehiculo;
 	private float costoVehiculo,capacidadVehiculo;
+	private boolean activo;
 	
 	public Vehiculo(){
 		
@@ -24,6 +25,25 @@ public class Vehiculo {
 		this.costoVehiculo = costoVehiculo;
 		this.capacidadVehiculo = capacidadVehiculo;
 	}
+
+
+	public Vehiculo(String placasVehiculo, float costoVehiculo,
+	 float capacidadVehiculo,boolean activo) {
+
+	 	if(costoVehiculo<0){
+			costoVehiculo=0;
+		}
+
+		if(capacidadVehiculo<0){
+			capacidadVehiculo=0;
+		}
+
+		this.placasVehiculo = placasVehiculo;
+		this.costoVehiculo = costoVehiculo;
+		this.capacidadVehiculo = capacidadVehiculo;
+		this.activo=activo;
+	}
+
 
 	public void setPlacasVehiculo(String placasVehiculo) {
 		this.placasVehiculo = placasVehiculo;
@@ -53,6 +73,14 @@ public class Vehiculo {
 
 	public float getCapacidadVehiculo() {
 		return this.capacidadVehiculo;
+	}
+
+	public void setActivo(boolean activo){
+		this.activo=activo;
+	}
+
+	public boolean getActivo(){
+		return this.activo;
 	}
 	
 

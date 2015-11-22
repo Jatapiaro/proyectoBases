@@ -5,58 +5,48 @@
 
 <html>
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<title>Registro de Cargamento</title>
 </head>
 <body>
- 
-
     <c:choose>
     	<c:when test="${sessionScope.usuario != null}">
-			<center>
-				<h1><strong>Registro de Cargamentos</strong></h1>
-				<form action="RegistrarCargamento.do" method="post">
-				<table>
+    			<div class="contenedor-formulario">
+		<div class="wrap">
+			<form action="RegistrarCargamento.do" class="formulario" name="formulario_registro" method="post">
 
-					<input type="hidden" value="${fleteID}" name="idFromFlete">
-					<tr>
-						<td>
-							Descripción del cargamento
-						</td>
-						<td>
-							<input type="text" name="tipoCargamento">
-						</td>	
-					</tr>
+			<input type="hidden" value="${fleteID}" name="idFromFlete">
+				<div>
+					<div div class="input-group">
+						<input type="text" id="tipo" name="tipoCargamento">
+						<label class="label" for="tipo">Tipo:</label>
+					</div>	
+					<div class="input-group">
+						<input type="text" id="PesoMaterial" name="pesoCargamento">
+						<label class="label" for="PesomMaterial">Peso del cargamento:</label>
+					</div>
 
-					<tr>
-						<td>
-							Peso del cargamento
-						</td>
-						<td>
-							<input type="text" name="pesoCargamento">
-						</td>	
-					</tr>
+					<div class="input-group radio">
+					<div style= "color:#303F9F">
+					Tratar con delicadeza
+					</div>
+						<input type="radio" name="delicadoCargamento" id="adminS" value="True">
+						<label for="adminS">Si</label>
 
-					<tr>
-						<td>
-							¿Es Delicado?
-						</td>
-						<td>
-							Si<input type="radio" name="delicadoCargamento" value="True"/>
-							No<input type="radio" name="delicadoCargamento" value="False"/>
-						</td>	
-					</tr>
+						<input type="radio" name="delicadoCargamento" id="adminN" value="False">
+						<label for="adminN">No</label>
+						
+					</div>
+					<input type="submit" id="btn-submit" value="Registrar Cargamento">
+				</div>
+			</form>
+		</div>
+	</div>
 
-
-					<tr>
-						<td colspan="2" align="center"><input type="submit" value="Registrar Cargamento"></td>
-					</tr>
-
-				</table>
-				</form>
-
-				<a href="Index.jsp">Menú Principal</a>
-
-			</center>
+	<script src="js/formulario.js"></script>
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

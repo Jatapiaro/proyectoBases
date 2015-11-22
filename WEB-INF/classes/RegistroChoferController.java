@@ -20,7 +20,7 @@ public class RegistroChoferController extends HttpServlet{
 		String usernameChofer=request.getParameter("usernameChofer");
 		parameters.add(usernameChofer);
 		String passwordChofer=request.getParameter("passwordChofer");
-		parameters.add("usernameChofer");
+		parameters.add(passwordChofer);
 		String telefonoChofer=request.getParameter("telefonoChofer");
 		parameters.add(telefonoChofer);
 		String salarioChofer=request.getParameter("salarioChofer");
@@ -58,7 +58,7 @@ public class RegistroChoferController extends HttpServlet{
 			new ListaChoferes().obtenerChoferes());
 		
 		request.getRequestDispatcher(
-			"HacerPruebas.jsp").forward(request,response);
+			"VerChoferes.jsp").forward(request,response);
 
 	}
 

@@ -1,124 +1,94 @@
 <!DOCTYPE html>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <html>
-<head>
-	<title>Registro de Clientes</title>
+<head>	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<title>Registro de Fletes</title>
 </head>
 <body>
     <c:choose>
     	<c:when test="${sessionScope.usuario != null}">
      			<center>
-					<h1><strong>Registrar Flete</strong></h1>
-						<form action="RegistrarFlete.do" method="post">
-							<table>
-								<tr>
-									<td>Cliente que solicta el servicio</td>
-									<td>
-										<select name="elCliente">
+	<div class="contenedor-formulario">
 
-										<c:forEach items="${ListaDeClientes}" var="cliente">
+		<div class="wrap">
+			<form action="RegistrarFlete.do" class="formulario" name="formulario_registro" method="post">
+				<div>
 
-	  									<option value="${cliente.clienteID}">${cliente.nombreCliente}</option>
-	  									</c:forEach>
-									    </select>
+				<h1>Registro de Flete</h1>
+					<div class="input-group" align="center">
+					<label class= "label" for="listaClientes" >Seleccione un cliente:</label>
 
-									</td>	
-								</tr>
+						<select id = "listaClientes" name="elCliente">
+							<c:forEach items="${ListaDeClientes}" var="cliente">
+								<option value="${cliente.clienteID}">${cliente.nombreCliente}</option>
+							</c:forEach>
+             			</select>
+             		</div>	
+             		<div class="input-group" align="center">
+					<label class= "label" for="listaChoferes" >Seleccione un chofer:</label>
+						<select id = "listaChoferes" name="elChofer">
 
-								<tr>
+							<c:forEach items="${ListaDeChoferes}" var="chofer">
+								<option value="${chofer.usernameChofer}">${chofer.nombreChofer}</option>
+							</c:forEach>
 
-									<td>Fecha y hora de recolección</td>
-									<td>
-										<input type="datetime-local" name="fechaHoraRecoleccion">
-									</td>
-		
-								</tr>
+             			</select>
+					<div class="input-group">
+						<label class="label" for="fechaHoraRecoleccion">Fecha y hora de recolecci&oacuten:</label>
+						<br>
+						<br>
+						<input type="datetime-local" id="fechaHoraRecoleccion" name="fechaHoraRecoleccion">
 
+					</div>
+					<div class="input-group">
+						<input type="text" id="direccionRecoleccion" name="direccionRecoleccion">
+						<label class="label" for="direccionRecoleccion">Direcci&oacuten de recolecci&oacuten:</label>
+					</div>
+					<div class="input-group">
 
-								<tr>
-
-									<td>
-										Dirección de recolección
-									</td>
-									<td>
-									<input type="text" name="direccionRecoleccion">
-									</td>
-		
-									</tr>
-
-
-									<tr>
-										<td>
-											Fecha y hora de entrega
-										</td>
-										<td>
-											<input type="datetime-local" name="fechaHoraEntrega">
-										</td>
-									</tr>
+						<label class="label" for="fechaHoraEntrega">Fecha y hora de entrega:</label>
+						<br>
+						<br>
+						<input type="datetime-local" id="fechaHoraEntrega" name="fechaHoraEntrega">
 
 
-									<tr>
+					</div>
+					<div class="input-group">
+						<input type="text" name="direccionEntrega" id="direccionEntrega">
+						<label class="label" for="direccionEntrega">Direcci&oacuten de entrega:</label>
+					</div>
 
-										<td>
-											Dirección de entrega
-										</td>
-										<td>
-											<input type="text" name="direccionEntrega">
-										</td>
-							
-									</tr>
+					<div class="input-group radio">
+						<input type="radio" name="zona" id="norte" value="Norte">
+						<label for="norte">Norte</label>
+						<input type="radio" name="zona" id="sur" value="Sur">
+						<label for="sur">Sur</label>
+						<input type="radio" name="zona" id="oriente" value="Oriente">
+						<label for="oriente">Oriente</label>
+						<input type="radio" name="zona" id="poniente" value="Poniente">
+						<label for="poniente">Poniente</label>
+						<input type="radio" name="zona" id="foraneo" value="Foraneo">
+						<label for="foraneo">Foráneo</label>
+					</div>
 
-								<tr>
-									<td>Chofer Encargado</td>
-									<td>
-										<select name="elChofer">
+					<div class="input-group">
+						<input type="text" id="km" name="kilometros">
+						<label class="label" for="km">Kilometros:</label>
+					</div>
+						
+					<input type="submit" id="btn-submit" value="Registrar Flete">
+				</div>
+			</form>
+		</div>
+	</div>
 
-										<c:forEach items="${ListaDeChoferes}" var="chofer">
-
-	  									<option value="${chofer.usernameChofer}">${chofer.nombreChofer}</option>
-	  									</c:forEach>
-									    </select>
-
-									</td>	
-								</tr>	
-
-
-									<tr>
-
-										<td>
-											Zona de Entrega
-										</td>
-
-										<td>
-											Norte<input type="radio" name="zona" value="Norte"/>
-											Sur<input type="radio" name="zona" value="Sur"/>
-											Oriente<input type="radio" name="zona" value="Oriente"/>
-											Poniente<input type="radio" name="zona" value="Poniente"/>
-											Foráneo<input type="radio" name="zona" value="Foraneo"/>
-										</td>	
-							
-									</tr>	
-
-									<tr>
-
-										<td>
-											Kilometros
-										</td>
-											<input type="text" name="kilometros">
-										<td>
-										</td>	
-							
-									</tr>		
-
-									<tr>
-										<td colspan="2" align="center"><input type="submit" value="RegistrarFlete"></td>
-									</tr>
-
-						</table>
-					</form>
+	<script src="js/formulario.js"></script>					
 				</center>
 				<a href="Index.jsp"></a>
 		</c:when>

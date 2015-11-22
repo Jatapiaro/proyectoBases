@@ -22,19 +22,19 @@ public class ListaClientes{
 	}
 
 	public Cliente getClienteFromID(int id){
-		Cliente c=new ConexionCliente().getClienteFromID(id);
-		if(c!=null){
-			return c;
-		}else{
-			return new Cliente("Cliente dado de baja","xx","xx",0,0);
-		}
+		return new ConexionCliente().getClienteFromID(id);
+	}
+
+	public String getNombreClienteFromID(int id){
+		return new ConexionCliente().getNombreClienteFromID(id);
 	}
 
 	public void eliminarCliente(int id){
 		new ConexionCliente().eliminarCliente(id);
 	}
 
+	public void modificarCliente(int id,Cliente c){
+		new ConexionCliente().modificarCliente(id,c);
+	}
 
-
-	
 }

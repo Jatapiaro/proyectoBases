@@ -43,8 +43,6 @@ public class ConexionFlete{
 
 	public void addFlete(Flete flete){
 		try{
-
-
 			String rows="(clienteID,choferID,direccionRecoleccion,";
 			rows+="direccionEntrega,zona,fechaHoraRecoleccion,";
 			rows+="fechaHoraEntrega";
@@ -92,6 +90,7 @@ public class ConexionFlete{
 		        enunciado.execute();
 		        //conexion.close();
 			}
+			consulta.close();
 			conexion.close();
 
 		}catch(SQLException e){
@@ -99,42 +98,46 @@ public class ConexionFlete{
 		}
 	}
 
-	public ArrayList<Flete> getAllFletes(){
+	public ArrayList<Flete> getProximosFletes(){
 		try{
 
 			resultado=consulta.executeQuery(
-				"SELECT * FROM Fletes WHERE fechaHoraEntrega<CURDATE();");
+				"SELECT * FROM Fletes WHERE fechaHoraEntrega>=CURDATE();");
 
 			while(resultado.next()){
-				fletes.add(new Flete(
+				
+				Flete flete=new Flete(
 					resultado.getInt("fleteID"),
 					resultado.getInt("clienteID"),
+					resultado.getInt("kilometros"),
 					resultado.getString("vehiculoID"),
 					resultado.getString("choferID"),
 					resultado.getString("direccionRecoleccion"),
 					resultado.getString("direccionEntrega"),
+					resultado.getString("zona"),
 					resultado.getFloat("precio"),
 					resultado.getTimestamp("horaSalidaRecoleccion"),
 					resultado.getTimestamp("horaSalidaEntrega"),
 					localDateConverter(resultado.getTimestamp("fechaHoraEntrega").toString()),
 					localDateConverter(resultado.getTimestamp("fechaHoraRecoleccion").toString()),
-					resultado.getString("zona"),
-					resultado.getInt("kilometros"),
 					resultado.getBoolean("recoleccionManiobra"),
-					resultado.getBoolean("entregaManiobra")
-					));
-				Flete f=fletes.get(fletes.size()-1);
-				String u=f.getChoferID();
-				fletes.get(fletes.size()-1).setChofer(new ListaChoferes().getChoferFromID(u));
-				int i=f.getClienteID();
-				fletes.get(fletes.size()-1).setCliente(new ListaClientes().getClienteFromID(i));
-				float peso=new ListaCargamentos().pesoCargamentos(f.getFleteID());
-				fletes.get(fletes.size()-1).setCargamentos(new ListaCargamentos(f.getFleteID()).getCargamentos());
-				Vehiculo v=new ListaVehiculos().getVehiculoForWeight(peso);
-				fletes.get(fletes.size()-1).setVehiculo(v);
-				fletes.get(fletes.size()-1).setVehiculoID(v.getPlacasVehiculo());
-				updateFleteVehiculo(f.getFleteID(),v.getPlacasVehiculo());
+					resultado.getBoolean("entregaManiobra"));
+
+				flete.setChoferNombre(new ListaChoferes().getNombreChoferFromID(flete.getChoferID()));
+				flete.setClienteNombre(new ListaClientes().getNombreClienteFromID(flete.getClienteID()));
+				float peso=new ListaCargamentos(flete.getFleteID()).pesoCargamentos(flete.getFleteID());
+				flete.setVehiculoID(getIDVehiculo(peso));
+				flete.setPeso(peso);
+				float maxP=new ListaVehiculos().getVehiculoMaxCapacidad();
+				if(peso>maxP){
+					float aux=peso-maxP;
+					flete.setAdvertencia("Estas sobrecargando "+aux+" kilogramos");
+				}
+				updateFleteVehiculo(flete.getFleteID(),flete.getVehiculoID());
+				fletes.add(flete);
 			}
+			
+			consulta.close();
 			conexion.close();
 
 
@@ -145,9 +148,28 @@ public class ConexionFlete{
 		return fletes;
 	}
 
+	public String getIDVehiculo(float peso){
+		ArrayList<Vehiculo> vehic=new ListaVehiculos().getVehiculos();
+		String s="";
+		for (Vehiculo v:vehic) {
+			if(v.getCapacidadVehiculo()>=peso){
+				s=v.getPlacasVehiculo();
+			}
+		}
+		if(s.equals("")){
+			float max=0;
+			for (Vehiculo v : vehic) {
+				if(v.getCapacidadVehiculo()>max){
+					max=v.getCapacidadVehiculo();
+					s=v.getPlacasVehiculo();
+				}
+			}
+		}
+		return s;
+	}
+
 	public void updateFleteVehiculo(int id, String newID){
 		try{
-			
 			enunciado=conexion.prepareStatement( 
 				"UPDATE Fletes SET vehiculoID=? WHERE fleteID="+id+";");	
 			enunciado.setString(1,newID);
@@ -171,11 +193,13 @@ public class ConexionFlete{
 		try{
 			resultado=consulta.executeQuery(
 				"SELECT COUNT(clienteID) AS nFletes FROM Fletes WHERE clienteID="
-				+idCliente+" AND fechaHoraRecoleccion>CURDATE();");
+				+idCliente+" AND fechaHoraRecoleccion>=CURDATE();");
 
 			while(resultado.next()){
 				n=resultado.getInt("nFletes");
 			}
+			consulta.close();
+			conexion.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -187,6 +211,7 @@ public class ConexionFlete{
 			enunciado=conexion.prepareStatement( 
 				"DELETE FROM Fletes WHERE clienteID="+idCliente+";");	
 			enunciado.executeUpdate();
+			consulta.close();
 			conexion.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -200,6 +225,7 @@ public class ConexionFlete{
 			enunciado.setTimestamp(1,timeStamp());
 			enunciado.setBoolean(2,b);
 			enunciado.executeUpdate();
+			consulta.close();
 			conexion.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -213,6 +239,7 @@ public class ConexionFlete{
 			enunciado.setTimestamp(1,timeStamp());
 			enunciado.setBoolean(2,m);
 			enunciado.executeUpdate();
+			consulta.close();
 			conexion.close();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -224,7 +251,24 @@ public class ConexionFlete{
 	    return new Timestamp(d2.getTime());
 	}
 
+	public int numeroFletesPorVehiculo(String id){
+		int n=0;
+		id="\""+id+"\"";
+		try{
+			resultado=consulta.executeQuery(
+				"SELECT COUNT(clienteID) AS nFletes FROM Fletes WHERE vehiculoID="
+				+id+" AND fechaHoraRecoleccion>CURDATE();");
 
+			while(resultado.next()){
+				n=resultado.getInt("nFletes");
+			}
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return n;
+	}
 
 
 }

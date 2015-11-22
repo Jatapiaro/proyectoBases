@@ -14,6 +14,7 @@ public class EliminarClienteController extends HttpServlet{
 	public void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException,IOException{
 
+		String color="";
 		int clienteID=Integer.parseInt(request.getParameter("clienteID"));
 		
 		int fletesCliente=new ConexionFlete().numeroFletesPorCliente(clienteID);
@@ -21,9 +22,13 @@ public class EliminarClienteController extends HttpServlet{
 		if(fletesCliente==0 && adeudo==0){
 			new ListaClientes().eliminarCliente(clienteID);
 			request.setAttribute("mensaje","Cliente eliminado de manera exitosa");
+			color+="10E214";
+			request.setAttribute("coloreado",color);
 			request.setAttribute("ListaDeClientes",new ListaClientes().obtenerClientes());
 	    	request.getRequestDispatcher("VerClientes.jsp").forward(request,response);
 		}else{
+			color+="FF0000";
+			request.setAttribute("coloreado",color);
 			request.setAttribute("mensaje","No se ha eliminado pues el cliente tiene fletes pendientes o tiene un adeudo");
 			request.setAttribute("ListaDeClientes",new ListaClientes().obtenerClientes());
 	    	request.getRequestDispatcher("VerClientes.jsp").forward(request,response);	

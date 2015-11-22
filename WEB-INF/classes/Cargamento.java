@@ -72,4 +72,12 @@ public class Cargamento{
 		return this.fleteID;
 	}
 
+	public void setCargamentoID(int cargamentoID){
+		this.cargamentoID=cargamentoID;
+	}
+
+	public int getCargamentoID(){
+		return cargamentoID;
+	}
+
 }

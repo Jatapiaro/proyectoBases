@@ -4,7 +4,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import beans.Flete;
+import beans.Vehiculo;
+import beans.Cliente;
 import modelos.ListaFletes;
+import modelos.ListaClientes;
+import modelos.ListaVehiculos;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -79,8 +83,8 @@ public class RegistroFleteController extends HttpServlet{
 		HttpServletResponse response)throws ServletException,IOException{
 
 		request.setAttribute("ListaDeFletes",
-			new ListaFletes().obtenerFletes());
-		ArrayList<Flete> fletesitos=new ListaFletes().obtenerFletes();
+			new ListaFletes().obtenerProximosFletes());
+		//javax.swing.JOptionPane.showMessageDialog(null,new ListaFletes().obtenerProximosFletes().size());
 		request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 
 	}
