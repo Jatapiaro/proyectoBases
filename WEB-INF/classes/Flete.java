@@ -15,7 +15,7 @@ public class Flete{
 	private String vehiculoID,choferID,direccionRecoleccion,direccionEntrega,zona;
 	private float precio;
 	private Timestamp horaSalidaRecoleccion,horaSalidaEntrega;
-	private LocalDateTime fechaHoraRecoleccion,fechaHoraEntrega;
+	private Timestamp fechaHoraRecoleccion,fechaHoraEntrega;
 	private boolean recoleccionManiobra,entregaManiobra;
 	private ArrayList<Cargamento> cargamentos=new ArrayList<Cargamento>();
 	private String clienteNombre,choferNombre;
@@ -30,7 +30,7 @@ public class Flete{
 		String vehiculoID,String choferID,String direccionRecoleccion,
 		String direccionEntrega,String zona,float precio,
 		Timestamp horaSalidaRecoleccion,Timestamp horaSalidaEntrega,
-		LocalDateTime fechaHoraRecoleccion,LocalDateTime fechaHoraEntrega,
+		Timestamp fechaHoraRecoleccion,Timestamp fechaHoraEntrega,
 		boolean recoleccionManiobra,boolean entregaManiobra){
 
 		this.fleteID=fleteID;
@@ -70,8 +70,8 @@ public class Flete{
 
 
 	public Flete(int clienteID,String choferID,String direccionRecoleccion,
-		String direccionEntrega,LocalDateTime fechaHoraRecoleccion,
-		LocalDateTime fechaHoraEntrega,String zona){
+		String direccionEntrega,Timestamp fechaHoraRecoleccion,
+		Timestamp fechaHoraEntrega,String zona){
 
 			this.clienteID=clienteID;
 			this.choferID=choferID;
@@ -95,8 +95,8 @@ public class Flete{
 	}
 
 	public Flete(int clienteID,String choferID,String direccionRecoleccion,
-		String direccionEntrega,LocalDateTime fechaHoraRecoleccion,
-		LocalDateTime fechaHoraEntrega,String zona,int kilometros){
+		String direccionEntrega,Timestamp fechaHoraRecoleccion,
+		Timestamp fechaHoraEntrega,String zona,int kilometros){
 
 			this.clienteID=clienteID;
 			this.choferID=choferID;
@@ -197,19 +197,19 @@ public class Flete{
 		return this.horaSalidaEntrega;
 	}
 
-	public void setFechaHoraRecoleccion(LocalDateTime fechaHoraRecoleccion){
+	public void setFechaHoraRecoleccion(Timestamp fechaHoraRecoleccion){
 		this.fechaHoraRecoleccion=fechaHoraRecoleccion;
 	}
 
-	public LocalDateTime getFechaHoraRecoleccion(){
+	public Timestamp getFechaHoraRecoleccion(){
 		return this.fechaHoraRecoleccion;
 	}
 
-	public void setFechaHoraEntrega(LocalDateTime fechaHoraEntrega){
+	public void setFechaHoraEntrega(Timestamp fechaHoraEntrega){
 		this.fechaHoraEntrega=fechaHoraEntrega;
 	}
 
-	public LocalDateTime getFechaHoraEntrega(){
+	public Timestamp getFechaHoraEntrega(){
 		return this.fechaHoraEntrega;
 	}
 

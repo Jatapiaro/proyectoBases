@@ -25,9 +25,11 @@ public class RegistroFleteController extends HttpServlet{
 		parameters.add(clienteID);
 		String fechaHoraRecoleccion=request.getParameter("fechaHoraRecoleccion").replace("T"," ");
 		parameters.add(fechaHoraRecoleccion);
+		fechaHoraRecoleccion+=":00.00";
 		String direccionRecoleccion=request.getParameter("direccionRecoleccion");
 		parameters.add(direccionRecoleccion);
 		String fechaHoraEntrega=request.getParameter("fechaHoraEntrega").replace("T"," ");
+		fechaHoraEntrega+=":00.00";
 		parameters.add(fechaHoraEntrega);
 		String direccionEntrega=request.getParameter("direccionEntrega");
 		parameters.add(direccionEntrega);
@@ -46,8 +48,8 @@ public class RegistroFleteController extends HttpServlet{
 					Integer.parseInt(clienteID),
 					choferID,direccionRecoleccion,
 					direccionEntrega,
-					localDateConverter(fechaHoraRecoleccion),
-					localDateConverter(fechaHoraEntrega),
+					Timestamp.valueOf(fechaHoraRecoleccion),
+					Timestamp.valueOf(localDateConverter(fechaHoraEntrega)),
 					zona,Integer.parseInt(kilometros)
 					);
 		    new ListaFletes().agregarFlete(flete);
@@ -59,8 +61,8 @@ public class RegistroFleteController extends HttpServlet{
 					Integer.parseInt(clienteID),
 					choferID,direccionRecoleccion,
 					direccionEntrega,
-					localDateConverter(fechaHoraRecoleccion),
-					localDateConverter(fechaHoraEntrega),
+					Timestamp.valueOf(fechaHoraRecoleccion),
+					Timestamp.valueOf(fechaHoraEntrega),
 					zona
 					);	
 			new ListaFletes().agregarFlete(flete);

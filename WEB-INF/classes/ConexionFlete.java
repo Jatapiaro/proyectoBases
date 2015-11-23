@@ -59,12 +59,8 @@ public class ConexionFlete{
 				enunciado.setString(3,flete.getDireccionRecoleccion());
 		        enunciado.setString(4,flete.getDireccionEntrega());
 		        enunciado.setString(5,flete.getZona());
-		        String str=flete.getFechaHoraRecoleccion().toString().replace("T"," ");
-		        str+=":00.000000000";
-		        enunciado.setTimestamp(6,java.sql.Timestamp.valueOf(str));
-		        str=flete.getFechaHoraEntrega().toString().replace("T"," ");
-		        str+=":00.000000000";
-		        enunciado.setTimestamp(7,java.sql.Timestamp.valueOf(str));
+		        enunciado.setTimestamp(6,flete.getFechaHoraRecoleccion());
+		        enunciado.setTimestamp(7,flete.getFechaHoraEntrega());
 		        enunciado.setInt(8,flete.getKilometros());
 		        enunciado.setString(9,new ListaVehiculos().menorVehiculo());
 		        enunciado.execute();
@@ -80,12 +76,8 @@ public class ConexionFlete{
 				enunciado.setString(3,flete.getDireccionRecoleccion());
 		        enunciado.setString(4,flete.getDireccionEntrega());
 		        enunciado.setString(5,flete.getZona());
-		        String str=flete.getFechaHoraRecoleccion().toString().replace("T"," ");
-		        str+=":00.000000000";
-		        enunciado.setTimestamp(6, java.sql.Timestamp.valueOf(str));
-		        str=flete.getFechaHoraRecoleccion().toString().replace("T"," ");
-		        str+=":00.000000000";
-		        enunciado.setTimestamp(7, java.sql.Timestamp.valueOf(str));
+		        enunciado.setTimestamp(6, flete.getFechaHoraRecoleccion());
+		        enunciado.setTimestamp(7, flete.getFechaHoraEntrega());
 		        enunciado.setString(8,new ListaVehiculos().menorVehiculo());
 		        enunciado.execute();
 		        //conexion.close();
@@ -102,7 +94,7 @@ public class ConexionFlete{
 		try{
 
 			resultado=consulta.executeQuery(
-				"SELECT * FROM Fletes WHERE fechaHoraEntrega>=CURDATE();");
+				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)>=CURDATE();");
 
 			while(resultado.next()){
 				
@@ -118,8 +110,8 @@ public class ConexionFlete{
 					resultado.getFloat("precio"),
 					resultado.getTimestamp("horaSalidaRecoleccion"),
 					resultado.getTimestamp("horaSalidaEntrega"),
-					localDateConverter(resultado.getTimestamp("fechaHoraEntrega").toString()),
-					localDateConverter(resultado.getTimestamp("fechaHoraRecoleccion").toString()),
+					resultado.getTimestamp("fechaHoraEntrega"),
+					resultado.getTimestamp("fechaHoraRecoleccion"),
 					resultado.getBoolean("recoleccionManiobra"),
 					resultado.getBoolean("entregaManiobra"));
 
