@@ -32,11 +32,12 @@
 </head>
 <body>
     <c:choose>
-    	<c:when test="${sessionScope.usuario != null &&sessionScope.rol == true}">
+    	<c:when test="${sessionScope.usuario != null && sessionScope.rol == true}">
     		<center>
 	<div class="contenedor-formulario">
 		<div class="wrap">
 			<div class="formulario" name="formulario_registro">
+
 			<h2 style="color:#303F9F">Lista de Cargamentos</h2>
 			<br>
 			<br>
@@ -64,14 +65,17 @@
 								</c:when>
 
 								<c:otherwise>
-									<td style= "color:#303F9F">El cargamento es delicado</td>
+									<td style= "color:#303F9F">El cargamento no es delicado</td>
 								</c:otherwise>
 
 								</c:choose>
 								<td align='center' style= "color:#303F9F">
 
-								<form action=""method="post">
-								<input type="hidden" value="${cliente.clienteID}" name="clienteID">
+								<form action="ModificarCargamento.do"method="post">
+
+								<input type="hidden" value="${fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
+
+								<input type="hidden" value="${cargamento.cargamentoID}" name="cargamentoID">
 								<input type="submit" id="btn-submit" value="Editar" style="width:100%"></td>
 								</form>
 

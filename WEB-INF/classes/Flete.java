@@ -8,6 +8,8 @@ import beans.Cargamento;
 import beans.Vehiculo;
 import beans.Chofer;
 import beans.Cliente;
+import beans.Reparto;
+
 
 public class Flete{
 
@@ -17,10 +19,11 @@ public class Flete{
 	private Timestamp horaSalidaRecoleccion,horaSalidaEntrega;
 	private Timestamp fechaHoraRecoleccion,fechaHoraEntrega;
 	private boolean recoleccionManiobra,entregaManiobra;
-	private ArrayList<Cargamento> cargamentos=new ArrayList<Cargamento>();
 	private String clienteNombre,choferNombre;
 	private float peso;
 	private String advertencia;
+	private ArrayList<Reparto> repartos=new ArrayList<Reparto>();
+	private Vehiculo vehiculo;
 
 	public Flete(){
 
@@ -72,7 +75,6 @@ public class Flete{
 	public Flete(int clienteID,String choferID,String direccionRecoleccion,
 		String direccionEntrega,Timestamp fechaHoraRecoleccion,
 		Timestamp fechaHoraEntrega,String zona){
-
 			this.clienteID=clienteID;
 			this.choferID=choferID;
 			this.direccionRecoleccion=direccionRecoleccion;
@@ -80,7 +82,6 @@ public class Flete{
 			this.fechaHoraRecoleccion=fechaHoraRecoleccion;
 			this.fechaHoraEntrega=fechaHoraEntrega;
 			this.zona=zona;
-			
 	}
 
 	public Flete(int clienteID,String choferID,String direccionRecoleccion,
@@ -253,14 +254,6 @@ public class Flete{
 	}
 
 
-	public void setCargamentos(ArrayList<Cargamento> cargamentos){
-		this.cargamentos=cargamentos;
-	}
-
-	public ArrayList<Cargamento> getCargamentos(){
-		return this.cargamentos;
-	}
-
 	public void setChoferNombre(String choferNombre){
 		this.choferNombre=choferNombre;
 	}
@@ -291,6 +284,10 @@ public class Flete{
 
 	public String getAdvertencia(){
 		return this.advertencia;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo){
+		this.vehiculo=vehiculo;
 	}
 
 }

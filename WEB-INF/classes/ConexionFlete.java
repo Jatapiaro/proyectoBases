@@ -110,8 +110,8 @@ public class ConexionFlete{
 					resultado.getFloat("precio"),
 					resultado.getTimestamp("horaSalidaRecoleccion"),
 					resultado.getTimestamp("horaSalidaEntrega"),
-					resultado.getTimestamp("fechaHoraEntrega"),
 					resultado.getTimestamp("fechaHoraRecoleccion"),
+					resultado.getTimestamp("fechaHoraEntrega"),
 					resultado.getBoolean("recoleccionManiobra"),
 					resultado.getBoolean("entregaManiobra"));
 
@@ -126,6 +126,7 @@ public class ConexionFlete{
 					flete.setAdvertencia("Estas sobrecargando "+aux+" kilogramos");
 				}
 				updateFleteVehiculo(flete.getFleteID(),flete.getVehiculoID());
+				//flete.setVehiculo(new ListaVehiculos().getVehiculoFromID(flete.getVehiculoID()));
 				fletes.add(flete);
 			}
 			
@@ -274,6 +275,54 @@ public class ConexionFlete{
 			e.printStackTrace();
 		}
 		return n;
+	}
+
+	public Flete getFleteFromID(int id){
+		Flete f=null;
+		try{
+
+			resultado=consulta.executeQuery(
+				"SELECT * FROM Fletes WHERE fleteID="+id+";");
+
+			while(resultado.next()){
+				f=new Flete(
+					resultado.getInt("clienteID"),
+					resultado.getString("choferID"),
+					resultado.getString("direccionRecoleccion"),
+					resultado.getString("direccionEntrega"),
+					resultado.getTimestamp("fechaHoraRecoleccion"),
+					resultado.getTimestamp("fechaHoraEntrega"),
+					resultado.getString("zona"),
+					resultado.getInt("kilometros")
+					);
+			}
+			consulta.close();
+			conexion.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return f;
+	}
+
+	public void actualizarFlete(int idFlete,Flete f){
+		try{
+			enunciado=conexion.prepareStatement( 
+				"UPDATE Fletes SET clienteID=?,choferID=?,direccionRecoleccion=?,direccionEntrega=?,fechaHoraRecoleccion=?,fechaHoraEntrega=?,zona=?,kilometros=? WHERE fleteID="+idFlete+";");
+			enunciado.setInt(1,f.getClienteID());
+			enunciado.setString(2,f.getChoferID());
+			enunciado.setString(3,f.getDireccionRecoleccion());
+			enunciado.setString(4,f.getDireccionEntrega());
+			enunciado.setTimestamp(5,f.getFechaHoraRecoleccion());
+			enunciado.setTimestamp(6,f.getFechaHoraEntrega());
+			enunciado.setString(7,f.getZona());
+			enunciado.setInt(8,f.getKilometros());
+			enunciado.executeUpdate();
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 

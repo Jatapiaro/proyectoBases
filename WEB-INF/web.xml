@@ -493,4 +493,186 @@
 </servlet-mapping>
 
 
+<servlet>
+	 	<servlet-name>
+			ModificarCargamento
+
+		</servlet-name>
+
+		<servlet-class>
+			ModificarCargamentoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ModificarCargamento
+		</servlet-name>
+
+		<url-pattern>
+			/ModificarCargamento.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			ActualizarCargamento
+
+		</servlet-name>
+
+		<servlet-class>
+			ActualizarCargamentoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ActualizarCargamento
+		</servlet-name>
+
+		<url-pattern>
+			/ActualizarCargamento.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ObtenerFlete
+
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerFleteController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerFlete
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerFlete.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ModificarFlete
+
+		</servlet-name>
+
+		<servlet-class>
+			ModificarFleteController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ModificarFlete
+		</servlet-name>
+
+		<url-pattern>
+			/ModificarFlete.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ObtenerRep
+
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerRepartos
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerRep
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerRep.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			
+			RedireccionRep
+
+		</servlet-name>
+
+		<servlet-class>
+			RedireccionReparto
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				RedireccionRep
+		</servlet-name>
+
+		<url-pattern>
+			/RedireccionRep.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			RegistroReparto
+
+		</servlet-name>
+
+		<servlet-class>
+			RegistroRepartoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				RegistroReparto
+		</servlet-name>
+
+		<url-pattern>
+			/RegistroReparto.do
+		</url-pattern>
+
+</servlet-mapping>
+
 </web-app>

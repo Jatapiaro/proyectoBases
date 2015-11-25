@@ -37,6 +37,16 @@ public class Cargamento{
 
 	}
 
+	public Cargamento(int fleteID,String tipoCargamento,
+		float pesoCargamento,boolean delicadoCargamento,int cargamentoID){
+		this.fleteID=fleteID;
+		this.cargamentoID=cargamentoID;
+		this.tipoCargamento=tipoCargamento;
+		this.pesoCargamento=pesoCargamento;
+		this.delicadoCargamento=delicadoCargamento;
+
+	}
+
 	public void setTipoCargamento(String tipoCargamento){
 		this.tipoCargamento=tipoCargamento;
 	}

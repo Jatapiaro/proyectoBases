@@ -22,17 +22,20 @@
                         Flete Numero ${flete.fleteID}
                         <form action="ObtenerCargamentos.do" method="post">
                         <input type="hidden" value="${flete.fleteID}" name="theID">
+                        <input type="hidden" value="${flete.fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
                         <td>Nº Flete: </td><td><c:out value="${flete.fleteID}"/></td>
                         <td>Para el cliente: </td><td><c:out value="${flete.clienteNombre}"/></td>
+                        <td>Zona de destino:</td><td><c:out value="${flete.zona}"/></td>
                         <td><input type="submit" value="Ver cargamentos"></td>
                         </form>
                         </tr>
 
                         <tr>
-                        <form action="" method="post">
+                        <form action="ObtenerRep.do" method="post">
                         <input type="hidden" value="${flete.fleteID}" name="theID">
                         <td>Chofer encargado: </td><td><c:out value="${flete.choferNombre}"/></td>
                         <td>Vehiculo designado: </td><td><c:out value="${flete.vehiculoID}"/></td>
+                        <td>Kilometros aproximados: </td><td><c:out value="${flete.kilometros}"/></td> 
                         <td><input type="submit" value="Ver Repartos"></td>
                         </form>
                         </tr>
@@ -77,22 +80,34 @@
                         </tr>
 
                         <tr>
-                        <form action="ConfirmarEntrega.do" method="post">
-                        <input type="hidden" value="${flete.fleteID}" name="theID">
+
+
                         <td>Fecha y hora de entrega: </td><td><c:out value="${flete.fechaHoraEntrega}"/></td>
                         <td>Dirección de entrega: </td><td><c:out value="${flete.direccionEntrega}"/></td>
 
                         <c:choose>
-                        <c:when test="${flete.horaSalidaRecoleccion==null}"
+
+
+                        <c:when test="${flete.horaSalidaEntrega==null}">
+
+                        <form action="ConfirmarEntrega.do" method="post">
+
+                        <input type="hidden" value="${flete.fleteID}" name="theID">
+
+                        <input type="hidden" value="${flete.fechaHoraEntrega}" name="fechaHoraEntrega">
+
+                        <input type="hidden" value="${flete.horaSalidaRecoleccion}" name="horaSalidaRecoleccion">
+
                         <td>Maniobra al entregar</td>
                         <td>
+
                         Si<input type="radio" name="maniobraEntrega" value="True"/>
                         No<input type="radio" name="maniobraEntrega" value="False"/>
                         </td>
 
-                        <form action="" method="post">
                         <td><input type="submit" value="Entrega Completada"></td>
                         </form>
+
                         </c:when>
 
                         <c:otherwise>
@@ -117,7 +132,10 @@
                     
                     <tr>
                     <table>
+                    <form action="ObtenerFlete.do" method="post">
+                    <input type="hidden" value="${flete.fleteID}" name="theID">
                     <td><input type="submit" value="Eliminar Flete"></td>
+                    </form>
                     <td><input type="submit" value="Modificar flete"></td>
                     </table>
                     </tr>

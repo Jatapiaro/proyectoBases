@@ -49,7 +49,7 @@ public class RegistroFleteController extends HttpServlet{
 					choferID,direccionRecoleccion,
 					direccionEntrega,
 					Timestamp.valueOf(fechaHoraRecoleccion),
-					Timestamp.valueOf(localDateConverter(fechaHoraEntrega)),
+					Timestamp.valueOf(fechaHoraEntrega),
 					zona,Integer.parseInt(kilometros)
 					);
 		    new ListaFletes().agregarFlete(flete);

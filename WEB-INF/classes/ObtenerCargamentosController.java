@@ -10,16 +10,15 @@ import conexiones.ConexionCargamento;
 
 public class ObtenerCargamentosController extends HttpServlet{
 
-	//Usar para traer el objeto a editar.
 	@Override
 	public void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException,IOException{
-
+		String t=request.getParameter("fechaHoraRecoleccion");
 		int id=Integer.parseInt(request.getParameter("theID"));
 		request.setAttribute("fleteID",id);
+		request.setAttribute("fechaHoraRecoleccion",t);
 		request.setAttribute("ListaDeCargamentos",new ConexionCargamento().getCargamentos(id));
 		request.getRequestDispatcher("VerCargamentos.jsp").forward(request,response);
-
 	}
 
 }

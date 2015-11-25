@@ -116,4 +116,44 @@ public class ConexionCargamento{
 		}
 
 	}
+
+	public void modificarCargamento(int id, Cargamento c){
+		try{
+			enunciado=conexion.prepareStatement( 
+				"UPDATE Cargamentos SET tipoCargamento=?,pesoCargamento=?,delicadoCargamento=? WHERE cargamentoID="+id+";");
+			enunciado.setString(1,c.getTipoCargamento());
+			enunciado.setFloat(2,c.getPesoCargamento());
+			enunciado.setBoolean(3,c.getDelicadoCargamento());
+			enunciado.executeUpdate();
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	public Cargamento getCargamentoFromID(int id){
+		Cargamento c=null;
+		try{
+
+			resultado=consulta.executeQuery(
+				"SELECT * FROM Cargamentos WHERE cargamentoID="+id+";");
+
+			while(resultado.next()){
+				c=new Cargamento(
+					resultado.getInt("fleteID"),
+					resultado.getString("tipoCargamento"),
+					resultado.getFloat("pesoCargamento"),
+					resultado.getBoolean("delicadoCargamento"),
+					resultado.getInt("cargamentoID")
+					);
+			}
+			consulta.close();
+			conexion.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return c;
+	}
 }

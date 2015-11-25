@@ -47,6 +47,9 @@ public class ListaVehiculos{
 		return new ConexionVehiculo().getVehiculoMaxCapacidad();
 	}
 
+	public Vehiculo getVehiculoFromID(String id){
+		return new ConexionVehiculo().getVehiculoFromID(id);
+	}
 
 
 }

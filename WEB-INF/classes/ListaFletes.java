@@ -17,5 +17,13 @@ public class ListaFletes{
 	public ArrayList<Flete> obtenerProximosFletes(){
 		return new ConexionFlete().getProximosFletes();
 	}
+
+	public Flete getFleteFromID(int id){
+		return new ConexionFlete().getFleteFromID(id);
+	}
+
+	public void actualizarFlete(int idFlete,Flete f){
+		new ConexionFlete().actualizarFlete(idFlete,f);
+	}
 	
 }

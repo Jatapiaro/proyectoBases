@@ -17,6 +17,7 @@ public class ConfirmarRecoleccion extends HttpServlet{
 
 		int idFlete=Integer.parseInt(request.getParameter("theID"));
 		Timestamp entry=Timestamp.valueOf(request.getParameter("fechaHoraRecoleccion"));
+		javax.swing.JOptionPane.showMessageDialog(null,entry);
 		Timestamp myTime=timeStamp();
 		boolean man=Boolean.parseBoolean(request.getParameter("maniobraRecoleccion"));
 		if(myTime.compareTo(entry)>=0){
@@ -24,7 +25,7 @@ public class ConfirmarRecoleccion extends HttpServlet{
 			request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 		}else{
-			request.setAttribute("mensaje","Aun falta tiempo para la hora de entrega");
+			request.setAttribute("mensaje","Aun falta tiempo para la hora de rescoleccion");
 		    request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 		}
