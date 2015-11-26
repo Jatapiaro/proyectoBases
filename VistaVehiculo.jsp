@@ -74,8 +74,10 @@
 			</form>
 		</div>
 	</div>
-
+	</table>
+	</center>
 	<script src="js/formulario.js"></script>
+	<a href="Index.jsp">Men&uacute</a>
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

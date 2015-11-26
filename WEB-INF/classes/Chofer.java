@@ -22,6 +22,12 @@ public class Chofer{
 		this.esAdmin=esAdmin;
 	}
 
+	public Chofer(String nombreChofer,String telefonoChofer,float salarioChofer){
+		this.nombreChofer=nombreChofer;
+		this.telefonoChofer=telefonoChofer;
+		this.salarioChofer=salarioChofer;
+	}
+
 	public Chofer(String nombreChofer,String usernameChofer,
 		String passwordChofer,String telefonoChofer,
 		float salarioChofer,boolean esAdmin,boolean activo){

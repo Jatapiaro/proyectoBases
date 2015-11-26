@@ -22,8 +22,6 @@
 
 
 				<input type="hidden" value="${flete.fleteID}" name="theID">
-				${flete.fleteID}
-				<h1>Registro de Flete</h1>
 					<div class="input-group" align="center">
 					<label class= "label" for="listaClientes" >Seleccione un cliente:</label>
 
@@ -170,6 +168,8 @@
 			</form>
 		</div>
 	</div>
+
+	<a href="Index.jsp">Men&uacute</a>
 
 	<script src="js/formulario.js"></script>					
 				</center>

@@ -7,6 +7,8 @@ import conexiones.ConexionFlete;
 import modelos.ListaFletes;
 import beans.Flete;
 import java.util.Date;
+import modelos.ListaRepartos;
+import beans.Reparto;
 
 
 public class ConfirmarEntrega extends HttpServlet{
@@ -22,6 +24,16 @@ public class ConfirmarEntrega extends HttpServlet{
 		String horaSalidaRecoleccion=request.getParameter("horaSalidaRecoleccion");
 		boolean man=Boolean.parseBoolean(request.getParameter("maniobraEntrega"));
 		Timestamp myTime=timeStamp();
+		ArrayList<Reparto> r=new ListaRepartos(idFlete).getRepartos();
+		boolean todosEntregados=true;
+		if(r.size()!=0){
+			for (Reparto re : r) {
+				if(re.getEntregado()==false){
+					todosEntregados=false;
+					break;
+				}
+			}
+		}
 
 		if(horaSalidaRecoleccion.equals("")){
 			//javax.swing.JOptionPane.showMessageDialog(null,"Entro 1");
@@ -35,8 +47,12 @@ public class ConfirmarEntrega extends HttpServlet{
 		    request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 		}
-		else if(myTime.compareTo(Timestamp.valueOf(fechaHoraEntrega))>=0 && horaSalidaRecoleccion.length()>0){
-			//javax.swing.JOptionPane.showMessageDialog(null,"Entro 3");
+		else if(todosEntregados==false && myTime.compareTo(Timestamp.valueOf(fechaHoraEntrega))>=0 && horaSalidaRecoleccion.length()>0){
+			request.setAttribute("mensaje","No has entregado todos los repartos");
+		    request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
+			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
+		}
+		else if(todosEntregados==true && myTime.compareTo(Timestamp.valueOf(fechaHoraEntrega))>=0 && horaSalidaRecoleccion.length()>0){
 			new ConexionFlete().completarEntrega(idFlete,man);
 			request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);

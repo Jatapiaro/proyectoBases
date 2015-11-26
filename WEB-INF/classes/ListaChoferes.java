@@ -26,4 +26,12 @@ public class ListaChoferes{
 	public String getNombreChoferFromID(String id){
 		return new ConexionChofer().getNombreChoferFromID(id);
 	}
+
+	public void eliminarChofer(String id){
+		new ConexionChofer().eliminarChofer(id);
+	}
+
+	public void updateChofer(String id, Chofer c){
+		new ConexionChofer().updateChofer(id,c);
+	}
 }

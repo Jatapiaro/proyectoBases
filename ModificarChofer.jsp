@@ -7,9 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="css/estilos3.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<title>Registro de Clientes</title>
+	<title>Modificar Cliente</title>
 </head>
 <body>
  
@@ -18,32 +18,36 @@
     	<c:when test="${sessionScope.usuario != null}">
     			<div class="contenedor-formulario">
 		<div class="wrap">
-			<form action="RegistrarCliente.do" class="formulario" name="formulario_registro" method="post">
+
+			<div class="contenedor-formulario">
+		<div class="wrap">
+			<form action="ModificarChofer.do" class="formulario" name="formulario_registro" method="post">
 				<div>
 					<div class="input-group">
-						<input type="text" id="nombre" name="nombreCliente">
-						<label class="label" for="nombre">Nombre de la empresa:</label>
+						<input type="text" id="nombre" name="nombreChofer" value="${chofer.nombreChofer}">
+						<label class="label" for="nombre">Nombre del ch&oacutefer:</label>
 					</div>
 
 					<div class="input-group">
-						<input type="text" id="contacto" name="contactoCliente">
-						<label class="label" for="contacto">Representante o contacto del cliente</label>
+						<input type="text" id="telefono" name="telefonoChofer" value="${chofer.telefonoChofer}">
+						<label class="label" for="telefono">Tel&eacutefono del ch&oacutefer:</label>
 					</div>
 
 					<div class="input-group">
-						<input type="text" id="telefono" name="telefonoCliente">
-						<label class="label" for="telefono">Tel&eacutefono del cliente/representante:</label>
+						<input type="text" id="salario" name="salarioChofer" value="${chofer.salarioChofer}">
+						<label class="label" for="salario">Salario:</label>
 					</div>
 
-						
-					<input type="submit" id="btn-submit" value="Registrar Cliente">
+					<input type="hidden" value="${chofer.usernameChofer}" name="usernameChofer">
+
+					<input type="submit" id="btn-submit" value="Modificar Chofer">
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<script src="js/formulario.js"></script>
-	<a href="Index.jsp">Men&uacute</a>
+			
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

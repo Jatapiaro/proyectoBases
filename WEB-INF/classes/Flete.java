@@ -167,13 +167,6 @@ public class Flete{
 		return this.direccionEntrega;
 	}
 
-	public float getPrecio(){
-	    this.precio=0;
-		// this.precio+=vehiculo.getCostoVehiculo();
-		// this.precio+=precioPorZona();
-		return this.precio;
-	}
-
 	public void setZona(String zona){
 		this.zona=zona;
 	}
@@ -230,29 +223,48 @@ public class Flete{
 		return this.entregaManiobra;
 	}
 
-	public float calcularPrecio(){
+	public float getPrecio(){
 		this.precio=0;
-		//this.precio+=vehiculo.getCostoVehiculo();
-		//this.precio+=precioPorZona();
+		this.precio+=vehiculo.getCostoVehiculo();
+		this.precio+=precioPorZona();
+		this.precio+=precioRepartos();
+		if(recoleccionManiobra==true){
+			this.precio+=((peso/1000)*100);
+		}
+		if(entregaManiobra==true){
+			this.precio+=((peso/1000)*100);
+		}
 		return precio;
 	}
 
 	public float precioPorZona(){
 		float p=0;
 		if(zona.equals("Norte")){
-			p=100;
+			p=1000;
 		}else if(zona.equals("Sur")){
-			p=200;
+			p=1200;
 		}else if(zona.equals("Oriente")){
-			p=300;
+			p=1500;
 		}else if(zona.equals("Poniente")){
-			p=400;
+			p=1200;
 		}else if(zona.equals("Foraneo")){
 			p=kilometros*30;
 		}
 		return p;
 	}
 
+	public float precioRepartos(){
+		float precio=0;
+		if(repartos.size()!=0){
+			for (Reparto r : repartos) {
+				precio+=200;
+				if(r.getManiobra()==true){
+					precio+=100;
+				}
+			}
+		}
+		return precio;
+	}
 
 	public void setChoferNombre(String choferNombre){
 		this.choferNombre=choferNombre;
@@ -288,6 +300,10 @@ public class Flete{
 
 	public void setVehiculo(Vehiculo vehiculo){
 		this.vehiculo=vehiculo;
+	}
+
+	public void setRepartos(ArrayList<Reparto> repartos){
+		this.repartos=repartos;
 	}
 
 }

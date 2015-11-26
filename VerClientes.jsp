@@ -72,18 +72,17 @@
 								</form>
 								</td>
 
-
-								<td align='center' style= "color:#303F9F"><input type="submit" id="btn-submit3" value="Ver pr&oacute;ximos fletes" style="width:100%"></td>
-								<td align='center' style= "color:#303F9F"><input type="submit" id="btn-submit4" value="Ver fletes entregados" style="width:100%"></td>
-
 							</tr>
 							</c:forEach>
 				</div>
 			</form>
 		</div>
 	</div>
-
+	</td>
+	</table>
+	</center>
 	<script src="js/formulario.js"></script>
+	<a href="Index.jsp">Men&uacute</a>
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

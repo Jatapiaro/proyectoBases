@@ -62,7 +62,7 @@
 			<ul>
 				<li><a href="TraeClientesChoferes.do">Registrar Flete</a></li>
 				<li><a href="RegistrarFlete.do">Consultar Pr&oacute;ximos Fletes</a></li>
-				<li><a href="">Consultar Fletes Realizados</a></li>
+				<li><a href="ObtenerFletesAnt.do">Consultar Fletes Realizados</a></li>
 			</ul>
 
 
@@ -75,6 +75,7 @@
 			<li><a>Choferes</a>
 				<ul>
 				<li><a href="RegistroChofer.jsp">Registrar</a></li>
+
 				<li><a href="RegistrarChofer.do">Consultar</a></li>
 			</ul>	
 		

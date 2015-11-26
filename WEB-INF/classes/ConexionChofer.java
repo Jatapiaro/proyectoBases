@@ -142,5 +142,23 @@ public class ConexionChofer{
 		}
 	}
 
+	public void updateChofer(String id, Chofer c){
+
+		try{
+			id="\""+id+"\"";
+			enunciado=conexion.prepareStatement( 
+				"UPDATE Choferes SET nombreChofer=?,telefonoChofer=?,salarioChofer=? WHERE usernameChofer="+id+";");
+			enunciado.setString(1,c.getNombreChofer());	
+			enunciado.setString(2,c.getTelefonoChofer());
+			enunciado.setFloat(3,c.getSalarioChofer());
+			enunciado.executeUpdate();
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
+
 
 }

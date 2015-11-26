@@ -47,7 +47,7 @@
 					
 						<table >
 							<thead>
-								<th>Direccion</th>
+								<th>Direcci&oacuten</th>
 								<th>Entregado</th>
 								<th>Maniobra</th>
 							</thead>

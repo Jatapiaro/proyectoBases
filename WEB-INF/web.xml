@@ -782,4 +782,111 @@
 
 </servlet-mapping>
 
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			EliminarChofer
+
+		</servlet-name>
+
+		<servlet-class>
+			EliminarChoferController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				EliminarChofer
+		</servlet-name>
+
+		<url-pattern>
+			/EliminarChofer.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ObtenerChofer
+
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerChoferController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerChofer
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerChofer.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ModificarChofer
+
+		</servlet-name>
+
+		<servlet-class>
+			ModificarChoferController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ModificarChofer
+		</servlet-name>
+
+		<url-pattern>
+			/ModificarChofer.do
+		</url-pattern>
+
+</servlet-mapping>
+
+<servlet>
+	 	<servlet-name>
+			
+			ObtenerFletesAnt
+
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerFletesAntiguos
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerFletesAnt
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerFletesAnt.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
 </web-app>

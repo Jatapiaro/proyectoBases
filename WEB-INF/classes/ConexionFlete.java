@@ -9,9 +9,7 @@ import beans.Vehiculo;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
-import modelos.ListaVehiculos;
-import modelos.ListaChoferes;
-import modelos.ListaClientes;
+import modelos.*;
 import modelos.ListaCargamentos;
 import java.util.Date;
 public class ConexionFlete{
@@ -126,7 +124,8 @@ public class ConexionFlete{
 					flete.setAdvertencia("Estas sobrecargando "+aux+" kilogramos");
 				}
 				updateFleteVehiculo(flete.getFleteID(),flete.getVehiculoID());
-				//flete.setVehiculo(new ListaVehiculos().getVehiculoFromID(flete.getVehiculoID()));
+				flete.setVehiculo(new ListaVehiculos().getVehiculoFromID(flete.getVehiculoID()));
+				flete.setRepartos(new ListaRepartos(flete.getFleteID()).getRepartos());
 				fletes.add(flete);
 			}
 			
@@ -342,6 +341,89 @@ public class ConexionFlete{
 			e.printStackTrace();
 		}
 		return t;
+	}
+
+	public int numeroFletesPorChofer(String idChofer){
+		idChofer="\""+idChofer+"\"";
+		//SELECT COUNT(clienteID) AS nFletes FROM Fletes WHERE clienteID=7;
+		int n=0;
+		try{
+			resultado=consulta.executeQuery(
+				"SELECT COUNT(choferID) AS nFletes FROM Fletes WHERE choferID="
+				+idChofer+" AND fechaHoraRecoleccion>=CURDATE();");
+
+			while(resultado.next()){
+				n=resultado.getInt("nFletes");
+			}
+			consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return n;
+	}
+
+	public ArrayList<Flete> getAntiguosFletes(){
+		try{
+
+			resultado=consulta.executeQuery(
+				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)<CURDATE() ORDER BY fechaHoraRecoleccion ASC;");
+
+			while(resultado.next()){
+				
+				Flete flete=new Flete(
+					resultado.getInt("fleteID"),
+					resultado.getInt("clienteID"),
+					resultado.getInt("kilometros"),
+					resultado.getString("vehiculoID"),
+					resultado.getString("choferID"),
+					resultado.getString("direccionRecoleccion"),
+					resultado.getString("direccionEntrega"),
+					resultado.getString("zona"),
+					resultado.getFloat("precio"),
+					resultado.getTimestamp("horaSalidaRecoleccion"),
+					resultado.getTimestamp("horaSalidaEntrega"),
+					resultado.getTimestamp("fechaHoraRecoleccion"),
+					resultado.getTimestamp("fechaHoraEntrega"),
+					resultado.getBoolean("recoleccionManiobra"),
+					resultado.getBoolean("entregaManiobra"));
+
+				flete.setChoferNombre(new ListaChoferes().getNombreChoferFromID(flete.getChoferID()));
+				flete.setClienteNombre(new ListaClientes().getNombreClienteFromID(flete.getClienteID()));
+				float peso=new ListaCargamentos(flete.getFleteID()).pesoCargamentos(flete.getFleteID());
+				flete.setVehiculoID(getIDVehiculo(peso));
+				flete.setPeso(peso);
+				float maxP=new ListaVehiculos().getVehiculoMaxCapacidad();
+				if(peso>maxP){
+					float aux=peso-maxP;
+					flete.setAdvertencia("Estas sobrecargando "+aux+" kilogramos");
+				}
+				updateFleteVehiculo(flete.getFleteID(),flete.getVehiculoID());
+				flete.setVehiculo(new ListaVehiculos().getVehiculoFromID(flete.getVehiculoID()));
+				flete.setRepartos(new ListaRepartos(flete.getFleteID()).getRepartos());
+				fletes.add(flete);
+			}
+			
+			consulta.close();
+			conexion.close();
+
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return fletes;
+	}
+
+	public void eliminarFlete(int id){
+		try{
+			enunciado=conexion.prepareStatement("DELETE FROM Repartos WHERE repartoID="+idReparto+";");
+			enunciado.executeUpdate();
+		    consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 

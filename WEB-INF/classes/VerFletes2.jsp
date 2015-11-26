@@ -10,7 +10,7 @@
     <c:choose>
         <c:when test="${sessionScope.usuario != null}">
             <center>
-                <h1><strong>Ver fletes</strong></h1>
+                <h1><strong>Ver fletes Realizados</strong></h1>
                 <h1>${mensaje}</h1>
                 <c:forEach items="${ListaDeFletes}" var="flete">
                     <table>
@@ -131,33 +131,23 @@
 
                         <tr>
                             <td>
-                            Peso: ${flete.peso}kg
-                            </td>
-                            <td>
-                            Precio: $${flete.precio}
+                            Precio: ${flete.precio}
                             </td>
                         </tr>
                     
                     <tr>
                     <table>
-
                     <form action="ObtenerFlete.do" method="post">
                     <input type="hidden" value="${flete.fleteID}" name="theID">
 
-                    <input type="hidden" value="${flete.fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
-
-                    <td><input type="submit" value="Modificar flete"></td>
-                    </form>
-                    
-                    <td><input type="submit" value="Eliminar"></td>
-                    </table>
+                    <input type="hidden" value="${flete.fechaHoraRecoleccion}" name="fechaHoraRecoleccion">                    </table>
                     </tr>
                     </table>
                     </tr>
                 </c:forEach>
 
             </center>
-            <a href="Index.jsp">Men&uacute Principal</a>
+            <a href="Index.jsp">Menú Principal</a>
         </c:when>
         <c:otherwise>
             <c:redirect url="Login.html"></c:redirect>

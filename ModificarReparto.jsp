@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/estilos3.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<title>Modificar Cliente</title>
+	<title>Modificar Reparto</title>
 </head>
 <body>
  
@@ -33,7 +33,7 @@
 				<div>
 					<div div class="input-group">
 						<input type="text" id="direccion" name="direccion" value="${reparto.direccion}">
-						<label class="label" for="direccion">Dirección:</label>
+						<label class="label" for="direccion">Direcci&oacuten:</label>
 					</div>
 					<input type="submit" id="btn-submit" value="Modificar reparto">
 				</div>
