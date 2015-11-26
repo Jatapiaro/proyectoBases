@@ -24,19 +24,19 @@ public class ConfirmarEntrega extends HttpServlet{
 		Timestamp myTime=timeStamp();
 
 		if(horaSalidaRecoleccion.equals("")){
-			javax.swing.JOptionPane.showMessageDialog(null,"Entro 1");
+			//javax.swing.JOptionPane.showMessageDialog(null,"Entro 1");
 			request.setAttribute("mensaje","Aún no has recolectado el flete");
 		    request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 		}
 		else if(myTime.compareTo(Timestamp.valueOf(fechaHoraEntrega))<0 && !horaSalidaRecoleccion.equals("")){
-			javax.swing.JOptionPane.showMessageDialog(null,"Entro 2");
+			//javax.swing.JOptionPane.showMessageDialog(null,"Entro 2");
 			request.setAttribute("mensaje","Aun no es tiempo de entregar el flete");
 		    request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 		}
 		else if(myTime.compareTo(Timestamp.valueOf(fechaHoraEntrega))>=0 && horaSalidaRecoleccion.length()>0){
-			javax.swing.JOptionPane.showMessageDialog(null,"Entro 3");
+			//javax.swing.JOptionPane.showMessageDialog(null,"Entro 3");
 			new ConexionFlete().completarEntrega(idFlete,man);
 			request.setAttribute("ListaDeFletes",new ListaFletes().obtenerProximosFletes());
 			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);

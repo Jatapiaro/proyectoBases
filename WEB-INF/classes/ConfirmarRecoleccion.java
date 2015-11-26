@@ -17,7 +17,7 @@ public class ConfirmarRecoleccion extends HttpServlet{
 
 		int idFlete=Integer.parseInt(request.getParameter("theID"));
 		Timestamp entry=Timestamp.valueOf(request.getParameter("fechaHoraRecoleccion"));
-		javax.swing.JOptionPane.showMessageDialog(null,entry);
+		//javax.swing.JOptionPane.showMessageDialog(null,entry);
 		Timestamp myTime=timeStamp();
 		boolean man=Boolean.parseBoolean(request.getParameter("maniobraRecoleccion"));
 		if(myTime.compareTo(entry)>=0){

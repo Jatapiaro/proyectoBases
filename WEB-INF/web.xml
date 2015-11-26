@@ -675,4 +675,111 @@
 
 </servlet-mapping>
 
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ObtenerReparto
+
+		</servlet-name>
+
+		<servlet-class>
+			ObtenerRepartoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ObtenerReparto
+		</servlet-name>
+
+		<url-pattern>
+			/ObtenerReparto.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ModificarReparto
+
+		</servlet-name>
+
+		<servlet-class>
+			ModificarRepartoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ModificarReparto
+		</servlet-name>
+
+		<url-pattern>
+			/ModificarReparto.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+<servlet>
+	 	<servlet-name>
+			
+			EliminarReparto
+
+		</servlet-name>
+
+		<servlet-class>
+			EliminarRepartoController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				EliminarReparto
+		</servlet-name>
+
+		<url-pattern>
+			/EliminarReparto.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
+<servlet>
+	 	<servlet-name>
+			
+			ConfirmarRepart
+
+		</servlet-name>
+
+		<servlet-class>
+			ConfirmarReparto
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				ConfirmarRepart
+		</servlet-name>
+
+		<url-pattern>
+			/ConfirmarRepart.do
+		</url-pattern>
+
+</servlet-mapping>
+
 </web-app>

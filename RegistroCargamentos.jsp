@@ -18,8 +18,13 @@
 		<div class="wrap">
 			<form action="RegistrarCargamento.do" class="formulario" name="formulario_registro" method="post">
 
-			<input type="hidden" value="${fleteID}" name="idFromFlete">
+			
 				<div>
+
+					<input type="hidden" value="${fleteID}" name="idFromFlete">
+
+					<input type="hidden" value="${fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
+
 					<div div class="input-group">
 						<input type="text" id="tipo" name="tipoCargamento">
 						<label class="label" for="tipo">Tipo:</label>
@@ -47,6 +52,16 @@
 	</div>
 
 	<script src="js/formulario.js"></script>
+
+	<form action="ObtenerCargamentos.do" method="post">
+		
+		<input type="hidden" value="${fleteID}" name="theID">
+
+		<input type="hidden" value="${fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
+
+		<input type="submit" id="btn-submit" value="Regresar">
+	</form>
+
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

@@ -15,7 +15,8 @@ public class ObtenerRepartos extends HttpServlet{
 
 		int id=Integer.parseInt(request.getParameter("theID"));
 		request.setAttribute("fleteID",id);
-		javax.swing.JOptionPane.showMessageDialog(null,new ListaRepartos(id).getRepartos().size());
+		Timestamp fechaHoraRecoleccion=Timestamp.valueOf(request.getParameter("fechaHoraRecoleccion"));
+		request.setAttribute("fechaHoraRecoleccion",fechaHoraRecoleccion);
 		request.setAttribute("ListaDeRepartos",new ListaRepartos(id).getRepartos());
 		request.getRequestDispatcher("VerRepartos.jsp").forward(request,response);
 

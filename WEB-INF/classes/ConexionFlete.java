@@ -94,7 +94,7 @@ public class ConexionFlete{
 		try{
 
 			resultado=consulta.executeQuery(
-				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)>=CURDATE();");
+				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)>=CURDATE() ORDER BY fechaHoraRecoleccion ASC;");
 
 			while(resultado.next()){
 				
@@ -323,6 +323,25 @@ public class ConexionFlete{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+
+	public Timestamp isCollected(int id){
+		Timestamp t=null;
+		try{
+
+			resultado=consulta.executeQuery(
+				"SELECT horaSalidaRecoleccion FROM Fletes WHERE fleteID="+id+";");
+
+			while(resultado.next()){
+				t=resultado.getTimestamp("horaSalidaRecoleccion");
+			}
+			consulta.close();
+			conexion.close();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return t;
 	}
 
 

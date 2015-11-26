@@ -2,6 +2,7 @@ package modelos;
 import beans.Flete;
 import conexiones.ConexionFlete;
 import java.util.*;
+import java.sql.*;
 
 public class ListaFletes{
 	
@@ -24,6 +25,10 @@ public class ListaFletes{
 
 	public void actualizarFlete(int idFlete,Flete f){
 		new ConexionFlete().actualizarFlete(idFlete,f);
+	}
+
+	public Timestamp isCollected(int id){
+		return new ConexionFlete().isCollected(id);
 	}
 	
 }

@@ -63,13 +63,17 @@
 						</c:choose>
 						
 					</div>
-					<input type="submit" id="btn-submit" value="Registrar Cargamento">
+
+					<input type="hidden" value="${fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
+
+					<input type="submit" id="btn-submit" value="Modificar Cargamento">
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<script src="js/formulario.js"></script>
+
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

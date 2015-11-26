@@ -18,13 +18,23 @@ public class ObtenerFleteController extends HttpServlet{
 		HttpServletResponse response) throws ServletException,IOException{
 
 		int idFlete=Integer.parseInt(request.getParameter("theID"));
-		///request.setAttribute("fleteID",idFlete);		
+		Timestamp t=Timestamp.valueOf(request.getParameter("fechaHoraRecoleccion"));	
 		Flete f=new ListaFletes().getFleteFromID(idFlete);
-		f.setFleteID(idFlete);
-		request.setAttribute("flete",f);
-		request.setAttribute("ListaDeClientes",new ListaClientes().obtenerClientes());
-		request.setAttribute("ListaDeChoferes",new ListaChoferes().obtenerChoferes());
-		request.getRequestDispatcher("ModificarFlete.jsp").forward(request,response);
+
+		if(timeStamp().compareTo(t)<0){
+			f.setFleteID(idFlete);
+			request.setAttribute("flete",f);
+			request.setAttribute("ListaDeClientes",new ListaClientes().obtenerClientes());
+			request.setAttribute("ListaDeChoferes",new ListaChoferes().obtenerChoferes());
+			request.getRequestDispatcher("ModificarFlete.jsp").forward(request,response);
+		}else{
+			request.setAttribute("ListaDeFletes",
+			new ListaFletes().obtenerProximosFletes());
+			request.setAttribute("mensaje","El flete ya esta en proceso, ya no puedes modificarlo");
+			request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
+		}
+
+
 
 	}
 

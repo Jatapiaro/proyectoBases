@@ -30,7 +30,7 @@
 						<select id = "listaClientes" name="elCliente">
 							<c:forEach items="${ListaDeClientes}" var="cliente">
 							<c:choose>
-							<c:when test="${flete.clienteID==ClienteID}">
+							<c:when test="${flete.clienteID==cliente.clienteID}">
 							<option value="${cliente.clienteID}" selected>${cliente.nombreCliente}</option>
 							</c:when>
 							<c:otherwise>

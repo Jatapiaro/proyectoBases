@@ -28,4 +28,12 @@ public class ListaRepartos{
 		new ConexionReparto().entregado(id,m,t);
 	}
 
+	public void modificarReparto(int id, Reparto r){
+		new ConexionReparto().modificarReparto(id,r);
+	}
+
+	public void eliminarReparto(int id){
+		new ConexionReparto().eliminarReparto(id);
+	}
+
 }

@@ -132,7 +132,7 @@ public class ConexionReparto{
 	public void entregado(int idReparto,boolean maniobra,Timestamp t){
 		try{
 			enunciado=conexion.prepareStatement( 
-				"UPDATE Repartos SET maniobra=?,entregado=?,horaSalida WHERE repartoID="+idReparto+";");
+				"UPDATE Repartos SET maniobra=?,entregado=?,horaSalida=? WHERE repartoID="+idReparto+";");
 			enunciado.setBoolean(1,maniobra);
 			enunciado.setBoolean(2,true);
 			enunciado.setTimestamp(3,t);

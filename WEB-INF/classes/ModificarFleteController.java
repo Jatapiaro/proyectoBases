@@ -28,7 +28,7 @@ public class ModificarFleteController extends HttpServlet{
 		String zona=request.getParameter("zona");
 		kilometros=request.getParameter("kilometros");
 		
-		javax.swing.JOptionPane.showMessageDialog(null,fleteID);
+		//javax.swing.JOptionPane.showMessageDialog(null,fleteID);
 
 		Flete flete=new Flete(
 				Integer.parseInt(clienteID),

@@ -7,40 +7,41 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="css/estilos3.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<title>Registro de Reparto</title>
+	<title>Modificar Cliente</title>
 </head>
 <body>
+ 
+
     <c:choose>
-    	<c:when test="${sessionScope.usuario != null && sessionScope.rol == true}">
-    	<div class="contenedor-formulario">
+    	<c:when test="${sessionScope.usuario != null}">
+
+    	 <div class="contenedor-formulario">
 		<div class="wrap">
-			<form action="RegistroReparto.do" class="formulario" name="formulario_registro" method="post">
+
+			<form action="ModificarReparto.do" class="formulario" name="formulario_registro" method="post">
+
+
+			<input type="hidden" value="${reparto.repartoID}" name="repartoID">
 
 			<input type="hidden" value="${fleteID}" name="fleteID">
 
 			<input type="hidden" value="${fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
+
+
 				<div>
 					<div div class="input-group">
-						<input type="text" id="direccion" name="direccion">
-						<label class="label" for="direccion">Direcci&oacuten:</label>
+						<input type="text" id="direccion" name="direccion" value="${reparto.direccion}">
+						<label class="label" for="direccion">Dirección:</label>
 					</div>
-					<input type="submit" id="btn-submit" value="Registrar Reparto">
+					<input type="submit" id="btn-submit" value="Modificar reparto">
 				</div>
 			</form>
 		</div>
 	</div>
 	<script src="js/formulario.js"></script>
 
-		<form action="ObtenerRep.do" method="post">
-		
-		<input type="hidden" value="${fleteID}" name="theID">
-
-		<input type="hidden" value="${fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
-
-		<input type="submit" id="btn-submit" value="Regresar">
-	</form>
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>
