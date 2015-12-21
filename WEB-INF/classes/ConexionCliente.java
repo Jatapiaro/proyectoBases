@@ -21,7 +21,7 @@ public class ConexionCliente{
 			Class.forName("com.mysql.jdbc.Driver");
 
 			conexion=DriverManager.getConnection(
-				"jdbc:mysql://localhost/TransportesRizo","jacobo","jacobo");
+				"jdbc:mysql://localhost/TransportesRizo","jacobotapia","jacobo");
 
 			consulta=conexion.createStatement();
 
