@@ -19,11 +19,11 @@
                     <table border="1.0px">
 
                         <tr>
-                        Flete Numero ${flete.fleteID}
+                        Flete N&uacutemero ${flete.fleteID}
                         <form action="ObtenerCargamentos.do" method="post">
                         <input type="hidden" value="${flete.fleteID}" name="theID">
                         <input type="hidden" value="${flete.fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
-                        <td>Nº Flete: <c:out value="${flete.fleteID}"/></td>
+                        <td>N&ordm Flete: <c:out value="${flete.fleteID}"/></td>
                         <td>Para el cliente: <c:out value="${flete.clienteNombre}"/></td>
                         <td>Zona de destino: <c:out value="${flete.zona}"/></td>
                         <td><input type="submit" value="Ver cargamentos"></td>
@@ -44,8 +44,8 @@
 
 
                         <tr>
-                        <td>Fecha y hora de recoleccion: <c:out value="${flete.fechaHoraRecoleccion}"/></td>
-                        <td>Dirección de recolección: <c:out value="${flete.direccionRecoleccion}"/></td>
+                        <td>Fecha y hora de recolecci&oacuten: <c:out value="${flete.fechaHoraRecoleccion}"/></td>
+                        <td>Direcci&oacute de recolecci&oacuten: <c:out value="${flete.direccionRecoleccion}"/></td>
 
                         <c:choose>
                         <c:when test="${flete.horaSalidaRecoleccion==null}">
@@ -60,7 +60,7 @@
                         </form>
                         </c:when>
                         <c:otherwise>
-                        <td>Recoleccion completada a las:    
+                        <td>Recolecci&oacuten completada a las:    
                         <c:out value="${flete.horaSalidaRecoleccion.hours}"/>
                         :
                         <c:out value="${flete.horaSalidaRecoleccion.minutes}"/>hrs
@@ -148,8 +148,13 @@
 
                     <td><input type="submit" value="Modificar flete"></td>
                     </form>
-                    
+
+                    <form action="EliminarFlete.do" method="post">
+                    <input type="hidden" value="${flete.fleteID}" name="idFlete">
+
+                    <input type="hidden" value="${flete.fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
                     <td><input type="submit" value="Eliminar"></td>
+                    </form>
                     </table>
                     </tr>
                     </table>

@@ -74,7 +74,7 @@
 						<input type="radio" name="zona" id="poniente" value="Poniente">
 						<label for="poniente">Poniente</label>
 						<input type="radio" name="zona" id="foraneo" value="Foraneo">
-						<label for="foraneo">Foráneo</label>
+						<label for="foraneo">For&aacuteneo</label>
 					</div>
 
 					<div class="input-group">
@@ -90,7 +90,7 @@
 
 	<script src="js/formulario.js"></script>					
 				</center>
-				<a href="Index.jsp"></a>
+				<a href="Index.jsp">Men&uacute</a>
 		</c:when>
 		<c:otherwise>
 			<c:redirect url="Login.html"></c:redirect>

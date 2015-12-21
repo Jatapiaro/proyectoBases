@@ -888,5 +888,32 @@
 
 </servlet-mapping>
 
+<servlet>
+	 	<servlet-name>
+			
+			EliminarFlete
+
+		</servlet-name>
+
+		<servlet-class>
+			EliminarFleteController
+		</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+		<servlet-name>
+				EliminarFlete
+		</servlet-name>
+
+		<url-pattern>
+			/EliminarFlete.do
+		</url-pattern>
+
+</servlet-mapping>
+
+
+
 
 </web-app>

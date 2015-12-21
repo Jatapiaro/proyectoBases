@@ -1,32 +1,46 @@
 <!DOCTYPE html>
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html lang="en">
 <head>
-	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<title>Formularios</title>
+	<style type="text/css">
+    table {
+        font-family: "Roboto";
+    }
+    </style>
 </head>
 <body>
+	<div class="contenedor-formulario">
+		<div class="wrap">
+			<form action="VerificarLogin.do" class="formulario" name="formulario_registro" method="post">
+				<div>
+					<div class="input-group">
+						<input type="text" id="nombre" name="usernameChofer">
+						<label class="label" for="nombre">Username:</label>
+					</div>
+					<div class="input-group">
+						<input type="password" id="pass" name="passwordChofer">
+						<label class="label" for="pass">Contraseña:</label>
+					</div>						
+					<input type="submit" id="btn-submit" value="Login">
+				</div>
+			</form>
+		</div>
+	</div>
 
-	<form action="VerificarLogin.do" method="post">
-		<center>
-			<table>
-
-				<tr>
-					<td>Username</td>
-					<td><input type="text" name="usernameChofer"></td>
-				</tr>
-
-				<tr>
-					<td>Contraseña</td>
-					<td><input type="password" name="passwordChofer"></td>
-				</tr>
-
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="Ingresar"></td>
-				</tr>
-
-			</table>
-		</center>
-	</form>
-
+	<script src="js/formulario.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

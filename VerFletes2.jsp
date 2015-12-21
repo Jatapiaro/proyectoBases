@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/estilosFlete.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <title>Despliega Fletes</title>
-    <style type="text/css">s
+    <style type="text/css">
 
     table,tr,td{
         font-family: "Roboto";
@@ -156,36 +156,31 @@
                                 </tr>
 
                                 <tr>
-                                    <td style= "color:#303F9F">
-                                    <b>Peso: </b>${flete.peso} kg
+                                 <td style= "color:#303F9F">
+                                    <b>Peso: </b>${flete.peso}kg
                                     </td>
                                     <td style= "color:#303F9F">
                                     <b>Precio: </b>${flete.precio}
                                     </td>
-
                                 </tr>
-
-                            <tr>
-                            <table>
-                            <form action="ObtenerFlete.do" method="post">
-                            <input type="hidden" value="${flete.fleteID}" name="theID">
-
-                            <input type="hidden" value="${flete.fechaHoraRecoleccion}" name="fechaHoraRecoleccion">
-
+                                <tr>
+                            </tr>
+                            </table>
+                            </tr>
+                            </br>
+                            </br>
+                            </br>
                          </c:forEach>
                     </center>
 
                 </c:when>
-                </div>
-                <a href="Index.jsp">Men&uacute</a>
                 <c:otherwise>
                     <c:redirect url="Login.html"></c:redirect>
                 </c:otherwise>
                 </c:choose>
                 </div>
-
         </div>
-         
+         <a href="Index.jsp">Men&uacute</a>
     </div>
 </body>
 </html>

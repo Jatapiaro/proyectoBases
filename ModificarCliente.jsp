@@ -33,7 +33,7 @@
 
 					<div class="input-group">
 						<input type="text" id="telefono" name="telefonoCliente" value="${cliente.nombreCliente}">
-						<label class="label" for="telefono">Teléfono del cliente/representante:</label>
+						<label class="label" for="telefono">Tel&eacutefono del cliente/representante:</label>
 					</div>
 
 					<div class="input-group">

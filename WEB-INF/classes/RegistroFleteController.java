@@ -86,7 +86,6 @@ public class RegistroFleteController extends HttpServlet{
 
 		request.setAttribute("ListaDeFletes",
 			new ListaFletes().obtenerProximosFletes());
-		//javax.swing.JOptionPane.showMessageDialog(null,new ListaFletes().obtenerProximosFletes().size());
 		request.getRequestDispatcher("VerFletes.jsp").forward(request,response);
 
 	}

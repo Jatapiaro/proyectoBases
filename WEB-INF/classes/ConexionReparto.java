@@ -143,4 +143,18 @@ public class ConexionReparto{
 			e.printStackTrace();
 		}		
 	}
+
+	public void eliminarRepartosFlete(int idFlete){
+
+		try{
+			enunciado=conexion.prepareStatement("DELETE FROM Repartos WHERE repartoID="+idFlete+";");
+			enunciado.executeUpdate();
+		    consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
+
 }

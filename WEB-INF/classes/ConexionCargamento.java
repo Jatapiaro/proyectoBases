@@ -156,4 +156,17 @@ public class ConexionCargamento{
 		}
 		return c;
 	}
+
+	public void eliminarCargamentosFlete(int idFlete){
+
+		try{
+			enunciado=conexion.prepareStatement("DELETE FROM Cargamentos WHERE fleteID="+idFlete+";");
+			enunciado.executeUpdate();
+		    consulta.close();
+			conexion.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
 }

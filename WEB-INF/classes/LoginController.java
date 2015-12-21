@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet{
 			request.setAttribute("mensaje",
 				mensajeError);
 			request.setAttribute("direccion","Login.html");
-			request.getRequestDispatcher("FaltanDatos.jsp").forward(request,response);
+			request.getRequestDispatcher("resultados.jsp").forward(request,response);
 		}
 	}
 

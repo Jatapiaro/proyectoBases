@@ -11,7 +11,10 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import modelos.*;
 import modelos.ListaCargamentos;
+import modelos.ListaRepartos;
 import java.util.Date;
+import conexiones.ConexionCargamento;
+import conexiones.ConexionReparto;
 public class ConexionFlete{
 
 	private Connection conexion;
@@ -92,7 +95,7 @@ public class ConexionFlete{
 		try{
 
 			resultado=consulta.executeQuery(
-				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)>=CURDATE() ORDER BY fechaHoraRecoleccion ASC;");
+				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)>=CURDATE() AND activo=1 ORDER BY fechaHoraRecoleccion ASC;");
 
 			while(resultado.next()){
 				
@@ -199,7 +202,7 @@ public class ConexionFlete{
 		try{
 			resultado=consulta.executeQuery(
 				"SELECT COUNT(clienteID) AS nFletes FROM Fletes WHERE clienteID="
-				+idCliente+" AND fechaHoraRecoleccion>=CURDATE();");
+				+idCliente+" AND fechaHoraRecoleccion>=CURDATE() AND activo=1;");
 
 			while(resultado.next()){
 				n=resultado.getInt("nFletes");
@@ -215,7 +218,7 @@ public class ConexionFlete{
 	public void eliminarFletesPorCliente(int idCliente){
 		try{
 			enunciado=conexion.prepareStatement( 
-				"DELETE FROM Fletes WHERE clienteID="+idCliente+";");	
+				"DELETE FROM Fletes WHERE clienteID="+idCliente+" AND activo=1;");	
 			enunciado.executeUpdate();
 			consulta.close();
 			conexion.close();
@@ -263,7 +266,7 @@ public class ConexionFlete{
 		try{
 			resultado=consulta.executeQuery(
 				"SELECT COUNT(clienteID) AS nFletes FROM Fletes WHERE vehiculoID="
-				+id+" AND fechaHoraRecoleccion>CURDATE();");
+				+id+" AND fechaHoraRecoleccion>CURDATE() AND activo=1;");
 
 			while(resultado.next()){
 				n=resultado.getInt("nFletes");
@@ -350,7 +353,7 @@ public class ConexionFlete{
 		try{
 			resultado=consulta.executeQuery(
 				"SELECT COUNT(choferID) AS nFletes FROM Fletes WHERE choferID="
-				+idChofer+" AND fechaHoraRecoleccion>=CURDATE();");
+				+idChofer+" AND fechaHoraRecoleccion>=CURDATE() AND activo=1;");
 
 			while(resultado.next()){
 				n=resultado.getInt("nFletes");
@@ -367,7 +370,7 @@ public class ConexionFlete{
 		try{
 
 			resultado=consulta.executeQuery(
-				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)<CURDATE() ORDER BY fechaHoraRecoleccion ASC;");
+				"SELECT * FROM Fletes WHERE DATE(fechaHoraEntrega)<CURDATE() AND activo=1 ORDER BY fechaHoraRecoleccion ASC;");
 
 			while(resultado.next()){
 				
@@ -417,13 +420,14 @@ public class ConexionFlete{
 
 	public void eliminarFlete(int id){
 		try{
-			enunciado=conexion.prepareStatement("DELETE FROM Repartos WHERE repartoID="+idReparto+";");
+			enunciado=conexion.prepareStatement("UPDATE Fletes SET activo=0 WHERE fleteID="+id+";");
 			enunciado.executeUpdate();
 		    consulta.close();
 			conexion.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+
 	}
 
 
